@@ -39,18 +39,22 @@
                 <input type="submit" value="submit" id="button2">
                 
             </form>
+     
         </div>
+       
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
                     <h1>Welcome Back!</h1>
                     <p>To keep connected with us please login with your personal info</p>
                     <button class="ghost" id="signIn">Sign In</button>
+                    <a href="https://github.com/login/oauth/authorize?client_id=91e8c7892cbdca3deee5"><button>login to Github</button></a>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Hello, Friend!</h1>
-                    <p>Enter your details and start journey with us</p>
+                    <p>Enter your details and start booking with us</p>
                     <button class="ghost" id="signUp">Sign Up</button>
+                    <a href="https://github.com/login/oauth/authorize?client_id=91e8c7892cbdca3deee5"><button>login to Github</button></a>
                 </div>
             </div>
         </div>
@@ -82,7 +86,7 @@ signInButton.addEventListener('click', () => {
 });
 
 
-container.style.backgroundImage = "url('https://imagetolink.com/ib/FTj69HHARn.png')";
+container.style.backgroundImage = "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnbKxW8r6WwUbp9DXnWeH12hIv50Gn7L9yGQ&usqp=CAU')";
 container.style.backgroundRepeat = "no-repeat";
 container.style.backgroundSize = "cover";
 container.style.position = "relative";
@@ -142,7 +146,7 @@ async function login(){
         })
         if(res.ok){
             let token= await res.json();
-           localStorage.setItem("token",token.token)
+             localStorage.setItem("token",token.token)
             alert("Login Succecfully");
             window.location.href="home.html"
         }else{
