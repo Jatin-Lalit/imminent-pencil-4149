@@ -4,7 +4,8 @@ const bcrypt = require("bcrypt");
 const { UserModel } = require("../models/user.model");
 const { redisClient } = require("../configs/redis");
 const { BlacklistModel } = require("../models/blacklist.model");
-const store = require('store');
+const store = require('store'); // for cross browser local storage
+const { uuidv4 } = require("../configs/uuidGenerator")
 const { authMiddleware } = require("../middlewares/authMiddleware.middleware");
 // const cors =  require("cors")
 
@@ -20,9 +21,10 @@ userRouter.post("/register", async (req, res) => {
     const userData = req.body;
     // console.log(userData)
     try {
+        req.body.uniqueUserId = uuidv4();
         let alreadyPresent = await UserModel.findOne({ email: userData.email });
         if (alreadyPresent) {
-            res.status(400).send({ msg: "user is already present please use a different name" })
+            res.status(400).send({ msg: "user is already present please use a different email" })
         }
         else {
             const hash = bcrypt.hashSync(userData.password, 4);
@@ -56,11 +58,12 @@ userRouter.post("/login", async (req, res) => {
                     //using local storage npm package // ! not working
                     // store.set('username', { name:myUser?.name })
                     redisClient.set("refreshtoken", refreshToken)
-                    res.status(200).send({ msg: "User logged in", token, refreshToken, usernameforchat: myUser.name ,userId:myUser._id})
+                    store.set("barberUser",myUser);
+                    res.status(200).send({ msg: "User logged in", token, refreshToken, usernameforchat: myUser.name, userId: myUser._id })
                 });
             }
-            else{
-                res.status(400).send({msg:"user not found "})
+            else {
+                res.status(400).send({ msg: "user not found " })
             }
         } catch (error) {
             console.log(error)
@@ -75,7 +78,7 @@ userRouter.post("/login", async (req, res) => {
 
 
 // logout 
-userRouter.post("/logout",authMiddleware,async (req, res) => {
+userRouter.post("/logout", authMiddleware, async (req, res) => {
     const token = await redisClient.get("jwttoken")
     // console.log("🚀 ~ file: user.routes.js:66 ~ userRouter.post ~ token:", token)
     // token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ2aXNoYW50QGdtYWlsLmNvbSIsImlhdCI6MTY4MzAyMTkxMH0._0qh7J3lvLuhBDckqEyW5sRtLaOSdWa2rm0rELhc12E"
@@ -83,6 +86,7 @@ userRouter.post("/logout",authMiddleware,async (req, res) => {
     try {
         const blacklist = new BlacklistModel({ token: token })
         await blacklist.save();
+        store.remove('barberUser');
         res.status(200).send({ msg: "logged out " })
     } catch (error) {
         console.log(error)
@@ -92,7 +96,7 @@ userRouter.post("/logout",authMiddleware,async (req, res) => {
 
 // route to get new token using refresh token 
 // we will hit this route from the frontend 
-userRouter.get("/newtoken",authMiddleware,(req, res) => {
+userRouter.get("/newtoken", authMiddleware, (req, res) => {
     // console.log("new route hit ")
     const refreshToken = req.headers.authorization;
     // console.log("🚀 ~ file: user.routes.js:74 ~ userRouter.get ~ refreshToken:", refreshToken)
@@ -112,13 +116,13 @@ userRouter.get("/newtoken",authMiddleware,(req, res) => {
 })
 
 // patch route 
-userRouter.patch("/update/:id",authMiddleware, async (req, res) => {
-    let {id} = req.params;
+userRouter.patch("/update/:id", authMiddleware, async (req, res) => {
+    let { id } = req.params;
     console.log("🚀 ~ file: user.routes.js:114 ~ userRouter.patch ~ id:", id)
-    let {plan} = req.body;
+    let { plan } = req.body;
     console.log("🚀 ~ file: user.routes.js:115 ~ userRouter.patch ~ plan:", plan)
     try {
-        const user = await UserModel.findByIdAndUpdate(id,{ plan:plan });
+        const user = await UserModel.findByIdAndUpdate(id, { plan: plan });
 
         if (!user) {
             return res.status(404).send({ msg: "User not found" });

@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema({
     },
     mobileNumber: { type: String, required: true },
     uniqueUserId: { type: String, required: true, unique: true }, // for unique identification
-    bookings: [bookingSchema],
+    // bookings: [bookingSchema],
 }, { versionKey: false, timestamps: true });
 
 

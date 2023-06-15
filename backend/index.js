@@ -4,7 +4,9 @@ const app = express();
 const { connection } = require('./configs/dbConnection');
 const { userRouter } = require('./routes/user.routes');
 const { authMiddleware } = require('./middlewares/authMiddleware.middleware');
+const { barberRouter } = require('./routes/barber.routes');
 const cors = require('cors');
+const { hairStyleRouter } = require('./routes/hairstyle.routes');
 require("dotenv").config();
 
 // ^ middlewares 
@@ -13,6 +15,8 @@ app.use(express.json())
 // app.use(authMiddleware)
 
 app.use("/user", userRouter)
+app.use("/barber",barberRouter)
+app.use("/hairstyle",hairStyleRouter)
 // app.use("/auth", authRoute)
 
 // after user have logged in , we will use the auth middleware 
@@ -31,6 +35,7 @@ app.get("/", async (req, res) => {
 
 app.listen(process.env.PORT, async () => {
     try {
+        console.log("checking redis , db and server status")
         await connection;
         console.log("connected to db ")
 
