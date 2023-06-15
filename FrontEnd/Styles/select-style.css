@@ -59,7 +59,7 @@ body {
     overflow: scroll;
     overflow-x: hidden;
   }
-  
+
   .brand_div_option:hover {
     cursor: pointer;
     background: linear-gradient(135deg, #adffe7 0%, #1cc9ac 100%);
@@ -254,8 +254,9 @@ body {
     font-weight: 400;
     color: #666666;
     margin: 10px 15px;
-    padding: 10px 15px;
-    /* border: 10px solid rgb(255, 0, 106);  */
+    padding: 7px 11px;
+    border: 1px solid rgb(22, 202, 118);
+    border-radius: 5px;
   }
   
   #brand_check {
