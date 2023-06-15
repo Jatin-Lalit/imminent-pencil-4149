@@ -1,3 +1,5 @@
+// For only allowing logged in users to access things on the website
+
 var jwt = require('jsonwebtoken');
 const { UserModel } = require('../models/user.model');
 const { BlacklistModel } = require('../models/blacklist.model');

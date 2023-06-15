@@ -20,7 +20,7 @@ userRouter.post("/register", async (req, res) => {
     const userData = req.body;
     // console.log(userData)
     try {
-        let alreadyPresent = await UserModel.findOne({ name: userData.name });
+        let alreadyPresent = await UserModel.findOne({ email: userData.email });
         if (alreadyPresent) {
             res.status(400).send({ msg: "user is already present please use a different name" })
         }
