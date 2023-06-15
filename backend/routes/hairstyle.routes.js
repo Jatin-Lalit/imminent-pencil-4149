@@ -12,9 +12,9 @@ const { HairStyleModel } = require("../models/hairstyle.model");
 
 require("dotenv").config();
 
-hairStyleRouter = express();
+const hairStyleRouter = express();
 
-userRouter.use(express.json());
+hairStyleRouter.use(express.json());
 
 //register route
 hairStyleRouter.post("/add", async (req, res) => {

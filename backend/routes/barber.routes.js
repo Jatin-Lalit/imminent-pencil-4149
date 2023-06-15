@@ -12,7 +12,7 @@ const { authMiddleware } = require("../middlewares/authMiddleware.middleware");
 
 require("dotenv").config();
 
-barberRouter = express();
+const barberRouter = express();
 
 barberRouter.use(express.json());
 

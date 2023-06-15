@@ -8,6 +8,7 @@ const { barberRouter } = require('./routes/barber.routes');
 const cors = require('cors');
 const { hairStyleRouter } = require('./routes/hairstyle.routes');
 const { hairStyleBookingRouter } = require('./routes/hairstyleBooking.routes');
+const { productsRouter } = require('./routes/hairProducts.routes');
 require("dotenv").config();
 
 // ^ middlewares 
@@ -18,6 +19,8 @@ app.use("/user", userRouter)
 app.use("/barber", barberRouter)
 app.use("/hairstyle", hairStyleRouter)
 app.use("/hairstylebooking", hairStyleBookingRouter)
+app.use("/product", productsRouter)
+hairStyleRouter
 // app.use("/auth", authRoute)
 
 // after user have logged in , we will use the auth middleware 
