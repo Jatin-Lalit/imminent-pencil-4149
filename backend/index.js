@@ -7,16 +7,17 @@ const { authMiddleware } = require('./middlewares/authMiddleware.middleware');
 const { barberRouter } = require('./routes/barber.routes');
 const cors = require('cors');
 const { hairStyleRouter } = require('./routes/hairstyle.routes');
+const { hairStyleBookingRouter } = require('./routes/hairstyleBooking.routes');
 require("dotenv").config();
 
 // ^ middlewares 
 app.use(cors())
 app.use(express.json())
 // app.use(authMiddleware)
-
 app.use("/user", userRouter)
-app.use("/barber",barberRouter)
-app.use("/hairstyle",hairStyleRouter)
+app.use("/barber", barberRouter)
+app.use("/hairstyle", hairStyleRouter)
+app.use("/hairstylebooking", hairStyleBookingRouter)
 // app.use("/auth", authRoute)
 
 // after user have logged in , we will use the auth middleware 

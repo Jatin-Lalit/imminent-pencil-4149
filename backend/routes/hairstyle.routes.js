@@ -39,11 +39,11 @@ hairStyleRouter.post("/add", async (req, res) => {
 
 
 // patch route 
-hairStyleRouter.patch("/update/:id", authMiddleware, async (req, res) => {
+hairStyleRouter.patch("/update/:id", async (req, res) => {
     let { id } = req.params;
     console.log("🚀 ~ file: user.routes.js:114 ~ userRouter.patch ~ id:", id)
     try {
-        const hairstyle = await HairStyleModel.findByIdAndUpdate(id);
+        const hairstyle = await HairStyleModel.findByIdAndUpdate(id,req.body);
 
         if (!hairstyle) {
             return res.status(404).send({ msg: "hairstyle not found" });
