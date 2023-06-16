@@ -24,11 +24,6 @@ body {
     border-radius: 30px;
   }
 
-  .proClass {
-    margin: auto;
-    margin-left: 25%;
-    margin-top: 15px;
-  }
   .rating {
     font-size: 12px;
   }
@@ -127,6 +122,10 @@ body {
     /* border: 10px solid rgb(255, 0, 106);  */
   }
   #all_products > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     padding: 10px;
     border-radius: 5px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -138,14 +137,17 @@ body {
     cursor: pointer;
   }
   .proClass {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
+    margin-top: 15px;
     /* border: 10px solid rgb(32, 22, 26);  */
   }
   .name_pro_div {
+    display: flex;
     width: 100%;
     height: 43px;
     overflow: hidden;
+    border: 1px solid;
   }
   .proname {
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,

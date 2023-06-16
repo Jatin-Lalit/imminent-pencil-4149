@@ -16,7 +16,47 @@ const hairStyleRouter = express();
 
 hairStyleRouter.use(express.json());
 
-//register route
+//Get all styles data
+hairStyleRouter.get("/all", async (req, res) =>{
+    try {
+        let styles = await HairStyleModel.find()
+        res.status(200).send({styles})
+    } catch (err) {
+        return res.status(404).send(err.message)
+    }
+})
+
+//Get only data with gender type ==> Male
+hairStyleRouter.get("/male", async (req, res) =>{
+    try {
+        let styles = await HairStyleModel.aggregate([{ $match: { genderType: "male" } }])
+        res.status(200).send(styles)
+    } catch (err) {
+        return res.status(404).send(err.message)
+    }
+})
+
+//Get only data with gender type ==> Female
+hairStyleRouter.get("/female", async (req, res) =>{
+    try {
+        let styles = await HairStyleModel.aggregate([{ $match: { genderType: "female" } }])
+        res.status(200).send(styles)
+    } catch (err) {
+        return res.status(404).send(err.message)
+    }
+})
+
+//Get only data with gender type ==> Unisex
+hairStyleRouter.get("/unisex", async (req, res) =>{
+    try {
+        let styles = await HairStyleModel.aggregate([{ $match: { genderType: "unisex" } }])
+        res.status(200).send(styles)
+    } catch (err) {
+        return res.status(404).send(err.message)
+    }
+})
+
+//POST route
 hairStyleRouter.post("/add", async (req, res) => {
     const userData = req.body;
     // console.log(userData)
