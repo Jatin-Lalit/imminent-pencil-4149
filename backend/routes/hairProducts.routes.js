@@ -53,6 +53,9 @@ productsRouter.delete("/delete/:id", async (req, res) => {
   }
 });
 
+// get route 
+
+
 module.exports = {
   productsRouter
 };
