@@ -366,6 +366,7 @@ nav ul li a {
 
 .service-desc p {
     font-size: 14px;
+    
 }
 
 .single-service:hover .service-desc {
@@ -473,17 +474,19 @@ nav ul li a {
 
 .social-links {
     text-align: center;
+    
 }
 
 .social-links .bx {
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 80px;
     font-size: 20px;
     line-height: 40px;
     border: 1px solid #009688;
     margin: 40px 5px 0;
     cursor: pointer;
     transition: 0.5s;
+
 }
 
 .social-links .bx:hover {

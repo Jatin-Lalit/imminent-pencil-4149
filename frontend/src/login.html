@@ -5,7 +5,7 @@
     <title>StyleSeat</title>
     <link rel="icon" href="https://imagetolink.com/ib/F0LpYyMC7S.png" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="../styles/login.css">
     
 </head>
 
@@ -50,7 +50,7 @@
                     <button class="ghost" id="signIn">Sign In</button>
                     <a href="https://github.com/login/oauth/authorize?client_id=91e8c7892cbdca3deee5"><button>login to Github</button></a>
                 </div>
-                <div class="overlay-panel overlay-right">
+                <div class="overlay-panel overlay-right">                 
                     <h1>Hello, Friend!</h1>
                     <p>Enter your details and start booking with us</p>
                     <button class="ghost" id="signUp">Sign Up</button>
@@ -71,7 +71,7 @@
    
 
 
-    const signUpButton = document.getElementById('signUp');
+ const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 const leftPanel = document.querySelector('.left-panel');
@@ -107,6 +107,7 @@ try {
       email,
       pass
     }
+    
     console.log(obj)
 
     let signup_res= await fetch(`${baseurl}/signup`,{
