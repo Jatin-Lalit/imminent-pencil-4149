@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>StyleSeat</title>
+    <link rel="icon" href="https://imagetolink.com/ib/F0LpYyMC7S.png" type="image/icon type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../styles/login.css">
+    
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+
+            <form action="" id="form1">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                   
+                </div>
+                <span> Use your email for registration</span>
+                <input type="text" name="name" placeholder="Name" id="name">
+                <input type="email" name="email" placeholder="Email" id="email">
+                <input type="password" name="password" placeholder="Password" id="password">
+                <input type="submit" value="submit" id="button1">
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="" id="form2">
+                <h1 id="head">Sign In</h1>
+                
+                <span>Use your account</span>
+                <input type="email" name="email" placeholder="Email" id="email-log">
+                <input type="password" name="password" placeholder="Password" id="password-log">
+                <a   href="#"><h4 style="color:white;">Forgot Your Password</h4></a>
+                
+
+                <input type="submit" value="submit" id="button2">
+                
+            </form>
+     
+        </div>
+       
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                    <a href="https://github.com/login/oauth/authorize?client_id=91e8c7892cbdca3deee5"><button>login to Github</button></a>
+                </div>
+                <div class="overlay-panel overlay-right">                 
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your details and start booking with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                    <a href="https://github.com/login/oauth/authorize?client_id=91e8c7892cbdca3deee5"><button>login to Github</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+   
+
+
+ const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+const leftPanel = document.querySelector('.left-panel');
+const rightPanel = document.querySelector('.right-panel');
+
+signUpButton.addEventListener('click', () => {
+  container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+  container.classList.remove("right-panel-active");
+});
+
+
+container.style.backgroundImage = "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnbKxW8r6WwUbp9DXnWeH12hIv50Gn7L9yGQ&usqp=CAU')";
+container.style.backgroundRepeat = "no-repeat";
+container.style.backgroundSize = "cover";
+container.style.position = "relative";
+//////////////////////////////////////////////
+let baseurl="backend URL/";
+//let signup_btn= document.querySelector("#signup form");
+
+ //signup_btn.addEventListener("submit", signupFun)
+async function signup(){
+try {
+    // event.preventDefault();n
+   
+    let email=document.getElementById("emai").value
+    let name=document.getElementById("nam").value
+    let pass=document.getElementById("pass").value;
+    let obj={
+      name,
+      email,
+      pass
+    }
+    
+    console.log(obj)
+
+    let signup_res= await fetch(`${baseurl}/signup`,{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(obj)
+    })
+    if(signup_res.ok){
+        alert("Register Succecfully Now You  Can Login");
+       
+    }
+} catch (error) {
+    console.log(error)
+    alert("Something going wrong")
+}}
+
+
+async function login(){
+    try {
+        // event.preventDefault();
+        let email=document.getElementById("se").value
+        let password=document.getElementById("sp").value;
+        let obj={
+            email,
+            password
+        }
+        console.log(obj)
+    
+        let res= await fetch(`${baseurl}/login`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(obj)
+        })
+        if(res.ok){
+            let token= await res.json();
+             localStorage.setItem("token",token.token)
+            alert("Login Succecfully");
+            window.location.href="home.html"
+        }else{
+            alert("Wrong Credntials")
+        }
+    } catch (error) {
+        alert("Something going wrong")
+    }
+        
+    }
+
+</script>

@@ -119,10 +119,8 @@ userRouter.get("/newtoken", authMiddleware, (req, res) => {
 userRouter.patch("/update/:id", authMiddleware, async (req, res) => {
     let { id } = req.params;
     console.log("🚀 ~ file: user.routes.js:114 ~ userRouter.patch ~ id:", id)
-    let { plan } = req.body;
-    console.log("🚀 ~ file: user.routes.js:115 ~ userRouter.patch ~ plan:", plan)
     try {
-        const user = await UserModel.findByIdAndUpdate(id, { plan: plan });
+        const user = await UserModel.findByIdAndUpdate(id, req.body);
 
         if (!user) {
             return res.status(404).send({ msg: "User not found" });
