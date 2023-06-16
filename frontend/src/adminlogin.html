@@ -24,7 +24,7 @@
                 <input type="email" name="email" placeholder="Email" id="email">
                 <input type="password" name="password" placeholder="Password" id="password">
                 <input type="phone" name="phone" placeholder="Phone Number" id="phone">
-                <input type="text" name="specialization " placeholder="specialization " id="experience ">
+                <input type="text" name="specialization " placeholder="specialization " id="specialization ">
                
                 <button id="button1" >Submit</button>
 
@@ -115,18 +115,23 @@ async function signup(){
 try {
     // event.preventDefault();n
    
-    let email=document.getElementById("emai").value
-    let name=document.getElementById("nam").value
-    let pass=document.getElementById("pass").value;
+    let email=document.getElementById("email").value
+    let name=document.getElementById("name").value
+    let password=document.getElementById("password").value;
+    let phoneNumber=document.getElementById("phone").value;
+    let specialization=document.getElementById("specialization").value;
     let obj={
       name,
       email,
-      pass
+      password,
+      phoneNumber,
+      specialization
+
     }
     
     console.log(obj)
 
-    let signup_res= await fetch(`${baseurl}/signup`,{
+    let signup_res= await fetch(`${baseurl}/barber/register`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
@@ -146,15 +151,15 @@ try {
 async function login(){
     try {
         // event.preventDefault();
-        let email=document.getElementById("se").value
-        let password=document.getElementById("sp").value;
+        let email=document.getElementById("email-log").value
+        let password=document.getElementById("password-log").value;
         let obj={
             email,
             password
         }
         console.log(obj)
     
-        let res= await fetch(`${baseurl}/login`,{
+        let res= await fetch(`${baseurl}/barber/login`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
