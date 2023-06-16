@@ -23,7 +23,7 @@
                 <input type="text" name="name" placeholder="Name" id="name">
                 <input type="email" name="email" placeholder="Email" id="email">
                 <input type="password" name="password" placeholder="Password" id="password">
-                <input type="phone" name="phone" placeholder="Phone Number" id="password">
+                <input type="phone" name="phone" placeholder="Phone Number" id="phone">
                 <button id="button1" >Submit</button>
 
                 <!-- <input type="submit" value="Submit" id="button1"> -->
@@ -113,18 +113,20 @@ async function signup(){
 try {
     // event.preventDefault();n
    
-    let email=document.getElementById("emai").value
-    let name=document.getElementById("nam").value
-    let pass=document.getElementById("pass").value;
+    let email=document.getElementById("email").value
+    let name=document.getElementById("name").value
+    let pass=document.getElementById("password").value;
+    let mobileNumber=document.getElementById("phone").value;
     let obj={
       name,
       email,
-      pass
+      password,
+      mobileNumber
     }
     
     console.log(obj)
 
-    let signup_res= await fetch(`${baseurl}/signup`,{
+    let signup_res= await fetch(`${baseurl}/user/register`,{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
@@ -144,15 +146,15 @@ try {
 async function login(){
     try {
         // event.preventDefault();
-        let email=document.getElementById("se").value
-        let password=document.getElementById("sp").value;
+        let email=document.getElementById("email-log").value
+        let password=document.getElementById("password-log").value;
         let obj={
             email,
             password
         }
         console.log(obj)
     
-        let res= await fetch(`${baseurl}/login`,{
+        let res= await fetch(`${baseurl}/user/login`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
