@@ -20,7 +20,13 @@
     text-decoration: none;
     color: #333;
     font-weight: bold;
-}
+    margin-left: 100px;
+    transition: color 0.3s; /* Add transition effect for smooth color change */
+  }
+  
+  .nav-items a:hover {
+    color: #009688; /* Change the color when hovering over the links */
+  }
 
 .profile-box {
     display: flex;
@@ -43,7 +49,12 @@
     color: #fff;
     border: none;
     cursor: pointer;
-}
+    transition: background-color 0.3s; /* Add transition effect for smooth background color change */
+  }
+  
+  .nav-items button:hover {
+    background-color: #009688; /* Change the background color when hovering over the buttons */
+  }
 /* /////////////////// */
 #banner {
     background: linear-gradient(rgba(0, 0, 0, 0.5), #009688), url(https://i.postimg.cc/wvWYvN24/banner.jpg);
@@ -58,7 +69,7 @@
     position: absolute;
     top: 4%;
     left: 2%;
-    margin-top: 60px;
+    margin-top: 80px;
     
 }
 
@@ -169,6 +180,7 @@ nav ul li a {
 #features {
     width: 100%;
     padding: 70px 0;
+    margin-top: 80px;
 }
 
 .title-text p {
@@ -218,10 +230,12 @@ nav ul li a {
     flex-wrap: wrap;
     align-items: center;
     text-align: center;
+    margin-top: 80px;
 }
 
 .features {
     flex-basis: 50%;
+    
 }
 
 .features-img {
@@ -240,12 +254,14 @@ nav ul li a {
     margin-bottom: 10px;
     font-weight: 100;
     color: #009688;
+  
 }
 
 .features-desc {
     display: flex;
     align-items: center;
     margin-bottom: 40px;
+  
 }
 
 .features-icon .bx {
@@ -258,10 +274,6 @@ nav ul li a {
     border: 1px solid #009688;
 }
 
-.features-text p {
-    padding: 0 20px;
-    text-align: initial;
-}
 
 @media screen and (max-width: 770px) {
     .title-text h1 {
@@ -354,6 +366,7 @@ nav ul li a {
     opacity: 1s;
     transform: translate(-50%);
     transition: 1s;
+    margin-bottom: -80px;
 }
 
 .hr {
@@ -389,7 +402,7 @@ nav ul li a {
         margin: 5px auto;
     }
     .single-service:hover .service-desc {
-        bottom: 25% !important;
+        bottom: 40% !important;
     }
     .img-box img {
         margin-bottom: 20px;
@@ -561,5 +574,17 @@ nav ul li a {
     .testimonial-container {
         flex-direction: column;
         text-align: center;
+    }
+    .testimonial-row {
+        flex-direction: column;
+        text-align: center;
+    }
+    .logo {
+        width: 140px;
+        position: absolute;
+        top: 4%;
+        left: 2%;
+        margin-top: 120px;
+        
     }
 }
