@@ -16,6 +16,17 @@ const hairStyleBookingRouter = express();
 
 hairStyleBookingRouter.use(express.json());
 
+
+//get route 
+hairStyleBookingRouter.get("/get", async (req, res) => {
+    try {
+        const hairstyle = await HairStyleBookingModel.find();
+        res.status(200).send(hairstyle);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ msg: "Internal server error" });
+    }
+});
 //register route
 hairStyleBookingRouter.post("/add", async (req, res) => {
     const userData = req.body;
@@ -34,11 +45,11 @@ hairStyleBookingRouter.post("/add", async (req, res) => {
 
 
 // patch route 
-hairStyleBookingRouter.patch("/update/:id",  async (req, res) => {
+hairStyleBookingRouter.patch("/update/:id", async (req, res) => {
     let { id } = req.params;
     console.log("🚀 ~ file: user.routes.js:114 ~ userRouter.patch ~ id:", id)
     try {
-        const booking = await HairStyleBookingModel.findByIdAndUpdate(id,req.body);
+        const booking = await HairStyleBookingModel.findByIdAndUpdate(id, req.body);
 
         if (!booking) {
             return res.status(404).send({ msg: "booking not found" });
@@ -50,6 +61,25 @@ hairStyleBookingRouter.patch("/update/:id",  async (req, res) => {
         res.status(500).send({ msg: "Internal server error" });
     }
 });
+
+// delete booking by id 
+// Delete a booking by ID
+hairStyleBookingRouter.delete("/delete/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const booking = await HairStyleBookingModel.findByIdAndDelete(id);
+
+        if (!booking) {
+            return res.status(404).send({ msg: "Booking not found" });
+        }
+
+        res.status(200).send({ msg: "Booking deleted successfully" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ msg: "Internal server error" });
+    }
+});
+
 
 module.exports = {
     hairStyleBookingRouter
