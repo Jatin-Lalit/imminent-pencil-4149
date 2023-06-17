@@ -38,6 +38,9 @@ hairStyleRouter.post("/add", async (req, res) => {
 })
 
 
+
+
+
 // patch route 
 hairStyleRouter.patch("/update/:id", async (req, res) => {
     let { id } = req.params;
@@ -55,6 +58,8 @@ hairStyleRouter.patch("/update/:id", async (req, res) => {
         res.status(500).send({ msg: "Internal server error" });
     }
 });
+
+
 
 module.exports = {
     hairStyleRouter
