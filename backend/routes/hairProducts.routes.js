@@ -4,6 +4,17 @@ const { uuidv4 } = require("../configs/uuidGenerator")
 
 const productsRouter = express.Router();
 
+
+//get route 
+productsRouter.get("/get", async (req, res) => {
+  try {
+    const products = await HairProductModel.find();
+    res.status(200).send(products);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ msg: "Internal server error" });
+  }
+});
 // Add a new booking
 productsRouter.post("/add", async (req, res) => {
   try {

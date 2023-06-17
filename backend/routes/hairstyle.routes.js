@@ -17,17 +17,17 @@ const hairStyleRouter = express();
 hairStyleRouter.use(express.json());
 
 //Get all styles data
-hairStyleRouter.get("/all", async (req, res) =>{
+hairStyleRouter.get("/all", async (req, res) => {
     try {
         let styles = await HairStyleModel.find()
-        res.status(200).send({styles})
+        res.status(200).send({ styles })
     } catch (err) {
         return res.status(404).send(err.message)
     }
 })
 
 //Get only data with gender type ==> Male
-hairStyleRouter.get("/male", async (req, res) =>{
+hairStyleRouter.get("/male", async (req, res) => {
     try {
         let styles = await HairStyleModel.aggregate([{ $match: { genderType: "male" } }])
         res.status(200).send(styles)
@@ -37,7 +37,7 @@ hairStyleRouter.get("/male", async (req, res) =>{
 })
 
 //Get only data with gender type ==> Female
-hairStyleRouter.get("/female", async (req, res) =>{
+hairStyleRouter.get("/female", async (req, res) => {
     try {
         let styles = await HairStyleModel.aggregate([{ $match: { genderType: "female" } }])
         res.status(200).send(styles)
@@ -47,7 +47,7 @@ hairStyleRouter.get("/female", async (req, res) =>{
 })
 
 //Get only data with gender type ==> Unisex
-hairStyleRouter.get("/unisex", async (req, res) =>{
+hairStyleRouter.get("/unisex", async (req, res) => {
     try {
         let styles = await HairStyleModel.aggregate([{ $match: { genderType: "unisex" } }])
         res.status(200).send(styles)
@@ -86,13 +86,30 @@ hairStyleRouter.patch("/update/:id", async (req, res) => {
     let { id } = req.params;
     console.log("🚀 ~ file: user.routes.js:114 ~ userRouter.patch ~ id:", id)
     try {
-        const hairstyle = await HairStyleModel.findByIdAndUpdate(id,req.body);
+        const hairstyle = await HairStyleModel.findByIdAndUpdate(id, req.body);
 
         if (!hairstyle) {
             return res.status(404).send({ msg: "hairstyle not found" });
         }
 
         res.status(200).send({ msg: "hairstyle details updated successfully" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ msg: "Internal server error" });
+    }
+});
+
+// delete route
+hairStyleRouter.delete("/delete/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const hairstyle = await HairStyleModel.findByIdAndDelete(id);
+
+        if (!hairstyle) {
+            return res.status(404).send({ msg: "Hairstyle not found" });
+        }
+
+        res.status(200).send({ msg: "Hairstyle deleted successfully" });
     } catch (error) {
         console.log(error);
         res.status(500).send({ msg: "Internal server error" });
