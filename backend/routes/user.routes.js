@@ -58,7 +58,7 @@ userRouter.post("/login", async (req, res) => {
                     //using local storage npm package // ! not working
                     // store.set('username', { name:myUser?.name })
                     redisClient.set("refreshtoken", refreshToken)
-                    store.set("barberUser",myUser);
+                    store.set("barberUser",myUser,token,refreshToken);
                     res.status(200).send({ msg: "User logged in", token, refreshToken, usernameforchat: myUser.name, userId: myUser._id })
                 });
             }
