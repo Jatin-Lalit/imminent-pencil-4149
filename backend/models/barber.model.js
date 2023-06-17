@@ -9,9 +9,13 @@ const barberSchema = new mongoose.Schema({
     specialization: { type: String, required: true },
     availability: { type: Boolean, default: true }, // Fix the default value syntax
     experience: { type: Number, default: 0 },
-    uniqueBarberId: { type: String, required: true, unique: true }
+    uniqueBarberId: { type: String, required: true, unique: true }, profilePic: {
+        type: String,
+        default:
+            "https://img.freepik.com/free-vector/man-working-laptop-with-coffee-stationary-cartoon-vector-illustration_138676-2206.jpg",
+    },
 });
 
 const BarberModel = mongoose.model('Barber', barberSchema); // Use 'Barber' as the model name
 
-module.exports = {BarberModel};
+module.exports = { BarberModel };
