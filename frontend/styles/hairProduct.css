@@ -570,3 +570,32 @@ body {
       height: auto;
   }
 } */
+
+#card-div{
+   border: 2px solid red;
+   /* background-color: rgb(209, 195, 222); */
+   background: linear-gradient(90deg, #ffffff 40%, #c5fff5 100%);
+   /* position: fixed; */
+   width: 350px;
+   height: 50vh;
+   right: 40px;
+   position: absolute;
+   z-index: 1;
+   top: 50px;
+   display: none;
+   position: sticky;
+   text-align: center;
+   margin: auto;
+}
+
+#pay-div{
+  display: flex;
+  margin: auto;
+  width: 80%;
+  justify-content: center;
+}
+#ani-img{
+   width: 60%;
+   height:5%;
+   margin-bottom: 10px;
+}
