@@ -196,11 +196,14 @@ footer p {
   justify-content: space-between;
   margin-top: 20px;
   align-items: center;
-  margin-left: 200px;
-  margin-right: 200px;
   background-color: #3d9ab1;
   color: #fff;
   padding: 1rem;
+  width: 100%;
+}
+
+.tab-content {
+  width: 100%;
 }
 
 .indicator {
@@ -208,3 +211,78 @@ footer p {
   height: 10px;
   background-color: #0c7376;
 }
+
+/* bootstrap tabs css ++++++++++++++++++++++++++++++++++++ */
+.bootstrapTabsContainer {
+  padding: 30px;
+}
+
+/* bootstrap tabs css ------------------------------------ */
+
+/* product cards css vishant ++++++++++++++++++++++++++++++++ */
+.product-list {
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+
+.product-list h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-list #pcat {
+  color: #ff6f00;
+}
+
+.product-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-list li {
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.product-list li .product-card img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.product-list li .product-card h3 {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.product-list li .product-card p {
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.product-list li .product-card p:last-child {
+  margin-bottom: 0;
+}
+
+.product-list li .product-card p.price {
+  font-weight: bold;
+}
+
+.product-list li .product-card p.gender {
+  color: #ff6f00;
+}
+
+#pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+/* product cards css vishant ------------------------------- */

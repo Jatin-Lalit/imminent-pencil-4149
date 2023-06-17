@@ -14,9 +14,11 @@ require("dotenv").config();
 // ^ middlewares 
 app.use(cors())
 app.use(express.json())
-// app.use(authMiddleware)
 app.use("/user", userRouter)
 app.use("/barber", barberRouter)
+// ! auth middle ware commented temporarily
+// todo uncomment it
+// app.use(authMiddleware) 
 app.use("/hairstyle", hairStyleRouter)
 app.use("/hairstylebooking", hairStyleBookingRouter)
 app.use("/product", productsRouter)
