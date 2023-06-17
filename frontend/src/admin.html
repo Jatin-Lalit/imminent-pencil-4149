@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../styles/admin.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>Trimmers</h1>
+        <nav>
+            <ul>
+
+                <li><a href="#">Logout</a></li>
+               
+                <li><a href="adminorders.html">Orders</a></li>
+                <li>
+                    <a href="adminlogin.html"><img id="signin" style="height: 20px;width: 20px;" src="http://img.freepik.com/free-icon/user-image-with-black-background_318-34564.jpg?size=338&ext=jpg" /></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div id="todo">
+        <div>
+            <div><img src="https://images.meeshosupplyassets.com/growth/pending-orders-icon.svg" alt="Pending Orders icon"></div>
+            <div>
+                <p class="MuiTypography-root MuiTypography-body1 css-dvix8y">Porduct Orders</p>
+                <div>
+                    <h4 id="orders">0</h4>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div><img src="https://images.meeshosupplyassets.com/growth/pending-orders-icon.svg" alt="Pending Orders icon"></div>
+            <div>
+                <p class="MuiTypography-root MuiTypography-body1 css-dvix8y">Bookings</p>
+                <div>
+                    <h4 id="Bookings">0</h4>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div><img src="https://images.meeshosupplyassets.com/growth/out-of-stock-icon.svg" alt="Out of Stock icon"></div>
+            <div>
+                <p>Total Order Price</p>
+                <div>
+                    <h4 id="Total Order Price">0</h4>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div><img src="https://images.meeshosupplyassets.com/growth/low-stock-icon.svg" alt="Low Stock icon"></div>
+            <div>
+                <p class="MuiTypography-root MuiTypography-body1 css-dvix8y">Total Booking's Amount</p>
+                <div>
+                    <h4 id="Total Booking's Amount">0</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div id="addupdate">
+            <section class="add-product">
+                <h2>Add Product</h2>
+                <form id="add-product">
+                    <div>
+                        <label for="product-name">Product ID:</label>
+                        <input type="text" id="product-name" name="product-name" required>
+                    </div>
+                    <div>
+                        <label for="product-description">Product Description:</label>
+                        <textarea id="product-description" name="product-description" required></textarea>
+                     </div>
+                    <div>
+                        <label for="product-price">Product Price:</label>
+                        <input type="number" id="product-price" name="product-price" step="0.01" required>
+                     </div>
+                    <div>
+                        <label for="product-quantity">Product Quantity:</label>
+                        <input type="number" id="product-quantity" name="product-quantity" required>
+                    </div>
+                    <div>
+                        <label for="product-image">Product Image :1</label>
+                        <input type="link" id="product-image1" name="product-image" required>
+                    </div>
+                    
+                       
+                    
+
+                    <button  type="submit">Add Product</button>
+                </form>
+            </section>
+            <section class="add-product">
+                <h2>UPDATE PRODUCT</h2>
+                <form id="update-product">
+
+                    <div>
+                        <label for="product-id">Product Id:</label>
+                        <input type="text" id="productu-id" name="product-id">
+                    </div>
+                    <div>
+                        <label for="product-name">Product Name:</label>
+                        <input type="text" id="productu-name" name="product-name">
+                    </div>
+                    <div>
+                        <label for="product-description">Product Description:</label>
+                        <textarea id="productu-description" name="product-description"></textarea>
+                    </div>
+                    <div>
+                        <label for="product-price">Product Price:</label>
+                        <input type="number" id="productu-price" name="product-price" step="0.01">
+                    </div>
+                    <div>
+                        <label for="product-quantity">Product Quantity:</label>
+                        <input type="number" id="productu-quantity" name="product-quantity">
+                    </div>
+                    <div>
+                        <label for="product-image">Product Image :1</label>
+                        <input type="link" id="productu-image1" name="product-image">
+                    </div>
+                    
+                    
+
+
+
+                    <button type="submit">UPDATE PRODUCT</button>
+                </form>
+            </section>
+
+        </div>
+
+
+
+        <div>
+            <section class="product-list">
+                <h2>Product List <span id="pcat"></span></h2>
+                <ul id="items">
+
+                </ul>
+                <div id="pagination"></div>
+
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Trimmers  Admin Page</p>
+    </footer>
+</body>
+<script src="admindashboard.js"></script>
+
+</html>
