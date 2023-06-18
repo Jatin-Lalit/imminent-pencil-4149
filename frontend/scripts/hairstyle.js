@@ -1,23 +1,23 @@
-window.addEventListener("load",()=>{
-    let token = localStorage.getItem("token")
-    let logintag=document.getElementById("login-tag")
-    if(token){
-      logintag.innerHTML = "Logout"
-      logintag.removeAttribute("href")
-      logintag.addEventListener("click", (e)=>{
-        e.preventDefault()
-        Swal.fire(
-          '',
-          '<h3>Logout Success</h3>',
-          'success'
-        ).then((res)=>{
-          localStorage.clear()
-          window.location.href = "index.html"
-        })
-      })
-      return
-    }
-  })
+// window.addEventListener("load",()=>{
+//     let token = localStorage.getItem("token")
+//     let logintag=document.getElementById("login-tag")
+//     if(token){
+//       logintag.innerHTML = "Logout"
+//       logintag.removeAttribute("href")
+//       logintag.addEventListener("click", (e)=>{
+//         e.preventDefault()
+//         Swal.fire(
+//           '',
+//           '<h3>Logout Success</h3>',
+//           'success'
+//         ).then((res)=>{
+//           localStorage.clear()
+//           window.location.href = "index.html"
+//         })
+//       })
+//       return
+//     }
+//   })
   
   
   //"https://elegant-hare-dungarees.cyclic.app"
@@ -31,7 +31,7 @@ window.addEventListener("load",()=>{
       let res = await fetch(`${baseUrl}/all`);
   
       let data = await res.json();
-      console.log(data)
+      console.log("data",data)
   
       displayProduct(data.styles);
   
@@ -47,26 +47,6 @@ window.addEventListener("load",()=>{
 
       let Unisex = await UnisexData.json()
   
-    //   let HairKitData = await fetch(`${baseUrl}/product/HairKit`);
-  
-    //   let HairKit = await HairKitData.json();
-  
-    //   let ComboData = await fetch(`${baseUrl}/product/Combo`);
-  
-    //   let Combo = await ComboData.json();
-  
-    //   let HairData = await fetch(`${baseUrl}/product/Hair`);
-  
-    //   let Hair = await HairData.json();
-  
-    //   let MINIATUREData = await fetch(`${baseUrl}/product/MINIATURE`);
-  
-    //   let MINIATURE = await MINIATUREData.json();
-  
-    //   let CreamData = await fetch(`${baseUrl}/product/Cream`);
-  
-    //   let Cream = await CreamData.json();
-  
       //Filter by category and type
       document.querySelector(".WomenSort").addEventListener("click", function () {
         sort_by_women(Women);
@@ -79,51 +59,22 @@ window.addEventListener("load",()=>{
       document.querySelector(".UnisexSort").addEventListener("click", function() {
         sort_by_unisex(Unisex)
       })
-  
-    //   document.querySelector(".HairKit").addEventListener("click", function () {
-    //     filter_by_HairKit(HairKit);
-    //   });
-  
-    //   document.querySelector(".Combo").addEventListener("click", function () {
-    //     sort_by_men(Combo);
-    //   });
-  
-    //   document.querySelector(".Hair").addEventListener("click", function () {
-    //     sort_by_women(Hair);
-    //   });
-  
-    //   document.querySelector(".MINIATURE").addEventListener("click", function () {
-    //     sort_by_men(MINIATURE);
-    //   });
-  
-    //   document.querySelector(".Cream").addEventListener("click", function () {
-    //     sort_by_men(Cream);
-    //   });
 
-
-      ///sorting
-      document.querySelector(".dis_low").addEventListener("click", function () {
-        sort_dis_price(data.product);
+  
+      document.getElementById("low").addEventListener("click", function () {
+        sort_price(data.styles);
       });
   
-      document.querySelector(".dis_high").addEventListener("click", function () {
-        sort_dis_high(data.product);
+      document.getElementById("high").addEventListener("click", function () {
+        sort_price_high(data.styles);
       });
+    //   document.querySelector(".rating_low").addEventListener("click", function () {
+    //     sort_rating(data.styles);
+    //   });
   
-      document.querySelector(".low").addEventListener("click", function () {
-        sort_price(data.product);
-      });
-  
-      document.querySelector(".high").addEventListener("click", function () {
-        sort_price_high(data.product);
-      });
-      document.querySelector(".rating_low").addEventListener("click", function () {
-        sort_rating(data.product);
-      });
-  
-      document.querySelector(".rating_high").addEventListener("click", function () {
-        sort_rating_high(data.product);
-      });
+    //   document.querySelector(".rating_high").addEventListener("click", function () {
+    //     sort_rating_high(data.styles);
+    //   });
     } catch (error) {
       console.log("err:", error);
     }
@@ -163,12 +114,6 @@ window.addEventListener("load",()=>{
   
     //   rating.setAttribute("class", "rating");
     //   rating_div.append(rating);
-  
-    //   let mrp_price = document.createElement("p");
-    //   mrp_price.setAttribute("id", "price-box");
-    //   let span2 = document.createElement("span");
-    //   span2.textContent = `MRP ₹${ele.price}`;
-    //   span2.setAttribute("class", "mrp");
   
       let span = document.createElement("p");
       span.innerText = ele.description;
@@ -222,45 +167,11 @@ window.addEventListener("load",()=>{
     displayProduct(unisex);
   }
 
-  // filter_by_HairKit
-//   function filter_by_HairKit(HairKit) {
-//     document.querySelector("#all_products").innerHTML = null;
-  
-//     displayProduct(HairKit);
-//   }
-  
-  // filter_by_Combo
-//   function filter_by_Combo(Combo) {
-//     document.querySelector("#all_products").innerHTML = null;
-  
-//     displayProduct(Combo);
-//   }
-  
-  // filter_by_Hair
-//   function filter_by_Hair(Hair) {
-//     document.querySelector("#all_products").innerHTML = null;
-  
-//     displayProduct(Hair);
-//   }
-  
-  // filter_by_MINIATURE
-//   function filter_by_MINIATURE(MINIATURE) {
-//     document.querySelector("#all_products").innerHTML = null;
-  
-//     displayProduct(MINIATURE);
-//   }
-  
-  // filter_by_Cream
-//   function filter_by_Cream(Cream) {
-//     document.querySelector("#all_products").innerHTML = null;
-  
-//     displayProduct(Cream);
-//   }
-  
   //  filter low to high price
   function sort_price(data) {
+
     document.querySelector("#all_products").innerHTML = null;
-    data.sort(function (a, b) {
+    data.sort((a, b)=> {
       console.log(a.price);
       return Number(a.price) - Number(b.price);
     });
@@ -270,32 +181,14 @@ window.addEventListener("load",()=>{
   //filter high to low price
   function sort_price_high(data) {
     document.querySelector("#all_products").innerHTML = null;
-    data.sort(function (a, b) {
+    data.sort((a, b)=> {
       return Number(b.price) - Number(a.price);
       //  console.log(a.price)
     });
     displayProduct(data);
   }
   
-  //  filter low to bhigh discount
-//   function sort_dis_price(data) {
-//     document.querySelector("#all_products").innerHTML = null;
-//     data.sort(function (a, b) {
-//       return Number(a.discount) - Number(b.discount);
-//       //  console.log(a.price)
-//     });
-//     displayProduct(data);
-//   }
-  //filter high to low discount
-//   function sort_dis_high(data) {
-//     document.querySelector("#all_products").innerHTML = null;
-//     data.sort(function (a, b) {
-//       return Number(b.discount) - Number(a.discount);
-//       //  console.log(a.price)
-//     });
-//     displayProduct(data);
-//   }
-  
+
   //  filter low to high rating
 //   function sort_rating(data) {
 //     document.querySelector("#all_products").innerHTML = null;
