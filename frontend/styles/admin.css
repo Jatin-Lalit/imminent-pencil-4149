@@ -59,8 +59,6 @@ main {
 }
 
 .add-product form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
   margin-bottom: 1rem;
 }
@@ -193,13 +191,26 @@ footer p {
 
 #todo {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 20px;
   align-items: center;
   background-color: #3d9ab1;
   color: #fff;
   padding: 1rem;
+  gap: 10px;
   width: 100%;
+}
+
+#todo>div {
+  min-width: 200px;
+  display: flex;
+  background-color: #7dd5eb;
+  /* min-width: 30%; */
+  flex-grow: 1;
+  width: 25%;
+  padding: 10px;
+  gap: 10px;
 }
 
 .tab-content {
@@ -231,6 +242,17 @@ footer p {
   margin-bottom: 10px;
 }
 
+#items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#items li {
+  width: 33%;
+  flex-grow: 1;
+}
+
 .product-list #pcat {
   color: #ff6f00;
 }
@@ -242,7 +264,7 @@ footer p {
 }
 
 .product-list li {
-  background-color: black;
+  background-color: #fff;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -286,3 +308,151 @@ footer p {
 
 
 /* product cards css vishant ------------------------------- */
+
+/* add product form vishant +++++++++++++++++++++++ */
+.update-product>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-product-form>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-product {
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.update-product h2 {
+  margin-bottom: 1rem;
+}
+
+.update-product form {
+  grid-gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.update-product label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.update-product input[type="text"],
+.update-product input[type="number"],
+.update-product textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.update-product input[type="text"]:focus,
+.update-product input[type="number"]:focus,
+.update-product textarea:focus {
+  border-color: #45b4eb;
+}
+
+.update-product button[type="submit"] {
+  background-color: #2dbaee;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.update-product button[type="submit"]:hover {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+/* add product form vishant ----------------- */
+
+/* barber tab add,update and cards css  vishant +++++++++++++++++ */
+.add-barber,
+.update-barber,
+.barber-list {
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input,
+form button {
+  margin-bottom: 10px;
+}
+
+form input[type="number"] {
+  width: 60px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  width: 200px;
+}
+
+button[type="submit"] {
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.barber-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
+.barber-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.barber-card h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.barber-card p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+#barberItems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* barber tab add,update and cards css  vishant  ---------------- */

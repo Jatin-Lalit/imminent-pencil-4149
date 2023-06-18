@@ -30,20 +30,21 @@
 
     <!-- boostrap tabs  ++++++++++++++++++++++++++++++++++++++++++++++++++ -->
     <div class="d-flex align-items-start">
-        <div class="nav flex-column nav-pills me-3 bootstrapTabsContainer" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
-                type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</button>
+        <div class="nav flex-column nav-pills me-3 bootstrapTabsContainer" id="v-pills-tab" role="tablist"
+            aria-orientation="vertical">
+            <button class="nav-link active" id="v-pills-dashboard-tab" data-bs-toggle="pill"
+                data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                aria-selected="true">Dashboard</button>
             <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
                 type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Products</button>
-
             <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages"
                 type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Barbers</button>
             <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings"
                 type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
         </div>
         <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
-                tabindex="0">
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                aria-labelledby="v-pills-dashboard-tab" tabindex="0">
                 <!-- dashboard data will come here vishant -->
                 <div id="todo">
                     <div>
@@ -71,9 +72,9 @@
                                 alt="Out of Stock icon">
                         </div>
                         <div>
-                            <p>Total Order Price</p>
+                            <p>Total Order Revenue</p>
                             <div>
-                                <h4 id="Total Order Price">0</h4>
+                                <h4 id="TotalOrderPrice">0</h4>
                             </div>
                         </div>
                     </div>
@@ -81,114 +82,156 @@
                         <div><img src="https://images.meeshosupplyassets.com/growth/low-stock-icon.svg"
                                 alt="Low Stock icon"></div>
                         <div>
-                            <p class="MuiTypography-root MuiTypography-body1 css-dvix8y">Total Booking's Amount</p>
+                            <p class="MuiTypography-root MuiTypography-body1 css-dvix8y">Total Booking's Revenue</p>
                             <div>
                                 <h4 id="Total Booking's Amount">0</h4>
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <div>
+                            <img src="https://images.meeshosupplyassets.com/growth/pending-orders-icon.svg"
+                                alt="Pending Orders icon">
+                        </div>
+                        <div>
+                            <p class="MuiTypography-root MuiTypography-body1 css-dvix8y">Total Customers Registered</p>
+                            <div>
+                                <h4 id="Customers">0</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <img src="https://images.meeshosupplyassets.com/growth/pending-orders-icon.svg"
+                                alt="Pending Orders icon">
+                        </div>
+                        <div>
+                            <p class="MuiTypography-root MuiTypography-body1 css-dvix8y">Total Barbers Registered</p>
+                            <div>
+                                <h4 id="Barbers">0</h4>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
                 tabindex="0">
                 <!-- will handle all the products from here vishant  -->
-                <main>
-                    <div id="addupdate">
-                        <section class="add-product">
-                            <h2>Add Product</h2>
-                            <form id="add-product">
-                                <div>
-                                    <label for="product-name">Product ID:</label>
-                                    <input type="text" id="product-name" name="product-name" required>
-                                </div>
-                                <div>
-                                    <label for="product-description">Product Description:</label>
-                                    <textarea id="product-description" name="product-description" required></textarea>
-                                </div>
-                                <div>
-                                    <label for="product-price">Product Price:</label>
-                                    <input type="number" id="product-price" name="product-price" step="0.01" required>
-                                </div>
-                                <div>
-                                    <label for="product-quantity">Product Quantity:</label>
-                                    <input type="number" id="product-quantity" name="product-quantity" required>
-                                </div>
-                                <div>
-                                    <label for="product-image">Product Image :1</label>
-                                    <input type="link" id="product-image1" name="product-image" required>
-                                </div>
+                <div id="addupdate">
+                    <section class="add-product">
+                        <h2>Add Product</h2>
+                        <form id="hairProductForm">
+                            <!-- <label for="uniqueHairProductId">Unique Hair Product ID:</label>
+                            <input type="text" id="uniqueHairProductId" required><br><br> -->
 
+                            <label for="hairProductImage">Hair Product Image:</label>
+                            <input type="text" id="hairProductImage"
+                                value="https://example.com/default-image.jpg"><br><br>
 
+                            <label for="hairProductName">Hair Product Name:</label>
+                            <input type="text" id="hairProductName" required><br><br>
 
+                            <label for="description">Description:</label>
+                            <input type="text" id="description"><br><br>
 
-                                <button type="submit">Add Product</button>
-                            </form>
-                        </section>
-                        <section class="add-product">
-                            <h2>UPDATE PRODUCT</h2>
-                            <form id="update-product">
+                            <label for="price">Price:</label>
+                            <input type="number" id="price" required><br><br>
 
-                                <div>
-                                    <label for="product-id">Product Id:</label>
-                                    <input type="text" id="productu-id" name="product-id">
-                                </div>
-                                <div>
-                                    <label for="product-name">Product Name:</label>
-                                    <input type="text" id="productu-name" name="product-name">
-                                </div>
-                                <div>
-                                    <label for="product-description">Product Description:</label>
-                                    <textarea id="productu-description" name="product-description"></textarea>
-                                </div>
-                                <div>
-                                    <label for="product-price">Product Price:</label>
-                                    <input type="number" id="productu-price" name="product-price" step="0.01">
-                                </div>
-                                <div>
-                                    <label for="product-quantity">Product Quantity:</label>
-                                    <input type="number" id="productu-quantity" name="product-quantity">
-                                </div>
-                                <div>
-                                    <label for="product-image">Product Image :1</label>
-                                    <input type="link" id="productu-image1" name="product-image">
-                                </div>
+                            <label for="genderType">Gender Type:</label>
+                            <select id="genderType" required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="unisex">Unisex</option>
+                            </select><br><br>
 
+                            <button type="submit">Submit</button>
+                        </form>
+                    </section>
+                    <section class="update-product">
+                        <h2>UPDATE PRODUCT</h2>
+                        <form id="update-product-form">
+                            <label for="product-name">Product Name:</label>
+                            <input type="text" id="productu-name" name="product-name">
+                            <label for="product-description">Product Description:</label>
+                            <textarea id="productu-description" name="product-description"></textarea>
+                            <label for="product-price">Product Price:</label>
+                            <input type="number" id="productu-price" name="product-price" step="0.01">
+                            <label for="product-image">Product Image:</label>
+                            <input type="text" id="productu-image1" name="product-image">
+                            <button type="submit">UPDATE PRODUCT</button>
+                        </form>
+                    </section>
+                </div>
+                <div>
+                    <section class="product-list">
+                        <h2>Product List <span id="pcat"></span></h2>
+                        <ul id="items">
+                        </ul>
+                        <div id="pagination"></div>
 
-
-
-
-                                <button type="submit">UPDATE PRODUCT</button>
-                            </form>
-                        </section>
-
-                    </div>
-
-
-
-                    <div>
-                        <section class="product-list">
-                            <h2>Product List <span id="pcat"></span></h2>
-                            <ul id="items">
-                                <li></li>
-                            </ul>
-                            <div id="pagination"></div>
-
-                        </section>
-                    </div>
-                </main>
+                    </section>
+                </div>
             </div>
-            <div class="tab-pane fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab"
-                tabindex="0">
 
-            </div>
             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"
                 tabindex="0">
-
                 <!-- will handle all the babers from here vishant  -->
+                <section class="add-barber">
+                    <h2>ADD BARBER</h2>
+                    <form id="add-barber-form">
+                        <label for="barber-name">Barber Name:</label>
+                        <input type="text" id="barber-name" name="barber-name" required>
+                        <label for="barber-email">Barber Email:</label>
+                        <input type="email" id="barber-email" name="barber-email" required>
+                        <label for="barber-password">Barber Password:</label>
+                        <input type="password" id="barber-password" name="barber-password" required>
+                        <label for="barber-phone">Barber Phone Number:</label>
+                        <input type="text" id="barber-phone" name="barber-phone" required>
+                        <label for="barber-specialization">Barber Specialization:</label>
+                        <input type="text" id="barber-specialization" name="barber-specialization" required>
+                        <label for="barber-experience">Barber Experience:</label>
+                        <input type="number" id="barber-experience" name="barber-experience" min="0" value="0">
+                        <label for="barber-profile-pic">Barber Profile Picture:</label>
+                        <input type="text" id="barber-profile-pic" name="barber-profile-pic"
+                            value="https://img.freepik.com/free-vector/man-working-laptop-with-coffee-stationary-cartoon-vector-illustration_138676-2206.jpg">
+                        <button type="submit">ADD BARBER</button>
+                    </form>
+                </section>
+
+                <section class="update-barber">
+                    <h2>UPDATE BARBER</h2>
+                    <form id="update-barber-form">
+                        <label for="barber-id">Barber ID:</label>
+                        <input type="text" id="barber-id" name="barber-id" required>
+                        <label for="barber-name">Barber Name:</label>
+                        <input type="text" id="barber-name" name="barber-name">
+                        <label for="barber-email">Barber Email:</label>
+                        <input type="email" id="barber-email" name="barber-email">
+                        <label for="barber-password">Barber Password:</label>
+                        <input type="password" id="barber-password" name="barber-password">
+                        <label for="barber-phone">Barber Phone Number:</label>
+                        <input type="text" id="barber-phone" name="barber-phone">
+                        <label for="barber-specialization">Barber Specialization:</label>
+                        <input type="text" id="barber-specialization" name="barber-specialization">
+                        <label for="barber-experience">Barber Experience:</label>
+                        <input type="number" id="barber-experience" name="barber-experience" min="0">
+                        <label for="barber-profile-pic">Barber Profile Picture:</label>
+                        <input type="text" id="barber-profile-pic" name="barber-profile-pic">
+                        <button type="submit">UPDATE BARBER</button>
+                    </form>
+                </section>
+                <section class="barber-list">
+                    <h2>Product List <span id="pcat1"></span></h2>
+                    <ul id="barberItems">
+                    </ul>
+
+                </section>
             </div>
             <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"
                 tabindex="0">...</div>
         </div>
+    </div>
     </div>
 
     <!-- boostrap tabs  ------------------------------------------------ -->
@@ -197,6 +240,10 @@
     <footer>
         <p>&copy; 2023 Trimmers Admin Page</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
 </body>
 <script src="../scripts/admin.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

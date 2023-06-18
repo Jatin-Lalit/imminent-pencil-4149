@@ -58,7 +58,7 @@ userRouter.post("/login", async (req, res) => {
                     //using local storage npm package // ! not working
                     // store.set('username', { name:myUser?.name })
                     redisClient.set("refreshtoken", refreshToken)
-                    store.set("barberUser",myUser,token,refreshToken);
+                    store.set("barberUser", myUser, token, refreshToken);
                     res.status(200).send({ msg: "User logged in", token, refreshToken, usernameforchat: myUser.name, userId: myUser._id })
                 });
             }
@@ -127,6 +127,18 @@ userRouter.patch("/update/:id", authMiddleware, async (req, res) => {
         }
 
         res.status(200).send({ msg: "user details updated successfully" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ msg: "Internal server error" });
+    }
+});
+
+// get all users
+// GET route to fetch all users
+userRouter.get("/get", async (req, res) => {
+    try {
+        const users = await UserModel.find();
+        res.status(200).json(users);
     } catch (error) {
         console.log(error);
         res.status(500).send({ msg: "Internal server error" });

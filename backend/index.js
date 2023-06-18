@@ -9,6 +9,7 @@ const cors = require('cors');
 const { hairStyleRouter } = require('./routes/hairstyle.routes');
 const { hairStyleBookingRouter } = require('./routes/hairstyleBooking.routes');
 const { productsRouter } = require('./routes/hairProducts.routes');
+const { orderRouter } = require('./routes/order.routes');
 require("dotenv").config();
 
 // ^ middlewares 
@@ -22,6 +23,7 @@ app.use("/barber", barberRouter)
 app.use("/hairstyle", hairStyleRouter)
 app.use("/hairstylebooking", hairStyleBookingRouter)
 app.use("/product", productsRouter)
+app.use("/order", orderRouter)
 hairStyleRouter
 // app.use("/auth", authRoute)
 
