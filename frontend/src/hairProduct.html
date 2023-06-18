@@ -58,130 +58,73 @@
 
 
     <div id="main">
-        <div>
-            <div id="filterbar">
-                <!-- <div class="left-bar-cards">
-                    <p class="left_header">Styles</p>
-                    <div class="brand_div">
-                        <p class="brand_div_option" class="HairKit">Hair</p>
-                        <p class="brand_div_option" class="Combo">Beard</p>
-                        <p class="brand_div_option" class="Hair">Massage</p>
-                        <p class="brand_div_option" class="MINIATURE">Wash</p>
-                        <p class="brand_div_option" class="Cream">Facial</p>
-                    </div>
-                </div> -->
-
-                <!-- <div class="left-bar-cards">
-                    <p class="left_header">Discount</p>
-                    <div class="discount_div">
-                        <p><span></span><span class="brand_div_option" class="dis_low">Low To High</span></p>
-                        <p><span></span><span class="brand_div_option" class="dis_high">High To Low</span></p>
-                    </div>
-                </div> -->
-
-                <div class="left-bar-cards">
-                    <p class="left_header">Price</p>
-                    <div class="discount_div">
-                        <p><span></span><span class="brand_div_option" id="low">Low To High</span></p>
-                        <p><span></span><span class="brand_div_option" id="high">High To Low</span></p>
-                    </div>
-                </div>
-
-                <!-- <div class="left-bar-cards">
-                    <p class="left_header">Rating</p>
-                    <div class="discount_div">
-                        <p><span></span><span class="brand_div_option" class="rating_low">Low To High</span></p>
-                        <p><span></span><span class="brand_div_option" class="rating_high">High To Low</span></p>
-                    </div>
-                </div> -->
-            </div>
-        </div>
 
         <div>
-            <p id="brands_head">Choose Your Gender</p>
+            <p id="brands_head">Sort By</p>
             <div class="brands">
-                <div class="WomenSort">
-                    <img id="brand_img" src="https://cdn-icons-png.flaticon.com/256/40/40739.png" />
-                    <p>Womens</p>
+
+                <div>
+                    <div id="filterbar">
+        
+                        <div class="left-bar-cards">
+                            <p class="left_header">Price</p>
+                            <div class="discount_div">
+                                <p><span></span><span class="brand_div_option" id="low">Low To High</span></p>
+                                <p><span></span><span class="brand_div_option" id="high">High To Low</span></p>
+                            </div>
+                        </div>
+        
+                        <!-- <div class="left-bar-cards">
+                            <p class="left_header">Rating</p>
+                            <div class="discount_div">
+                                <p><span></span><span class="brand_div_option" class="rating_low">Low To High</span></p>
+                                <p><span></span><span class="brand_div_option" class="rating_high">High To Low</span></p>
+                            </div>
+                        </div> -->
+                    </div>
                 </div>
-                <div class="MenSort">
-                    <img id="brand_img" src="https://cdn-icons-png.flaticon.com/256/1802/1802292.png" />
-                    <p>Mens</p>
-                </div>
-                <div class="UnisexSort">
-                    <img id="brand_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2i3XgmZ8IVyo9mxrSq3Zk6_Huc9jHWk2Lo9jWXT4rKQ&s" />
-                    <p>Unisex</p>
+
+                <div id="gender-card">
+                    <div class="WomenSort">
+                        <img id="brand_img" src="https://cdn-icons-png.flaticon.com/256/40/40739.png" />
+                        <p>Female</p>
+                    </div>
+                    <div class="MenSort">
+                        <img id="brand_img" src="https://cdn-icons-png.flaticon.com/256/1802/1802292.png" />
+                        <p>Male</p>
+                    </div>
+                    <div class="UnisexSort">
+                        <img id="brand_img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2i3XgmZ8IVyo9mxrSq3Zk6_Huc9jHWk2Lo9jWXT4rKQ&s" />
+                        <p>Unisex</p>
+                    </div>
                 </div>
             </div>
 
             <p id="brands_head">Choose Your Style</p>
-             <div id="card-div">
+            <div id="card-div">
                 <div id="card-img"></div>
                 <h2 id="name"></h2>
                 <div>
-                    <h2>Total Price : <span>00</span></h2>
+                    <h2>Total Price : <span id="tprize">00</span></h2>
                     <img id="ani-img" src="https://i.pinimg.com/originals/66/22/ab/6622ab37c6db6ac166dfec760a2f2939.gif" alt="">
                     <div id="pay-div" >
-
-                        <button>+</button>
-                        <h3>0</h3>
-                        <button>-</button>
-                        <button>payment</button>
+                       <div>
+                           
+                           <button id="min">-</button>
+                           <p id="count"></p>
+                           <button id="plus">+</button>
+                           <a href="../src/pay.html"><button id="pay">Pay</button></a>
+                        </div>
+                        <div>
+                            <p style="display: none;" id="RPrice"></p>
+                            <button id="close">Close</button>
+                        </div>
                     </div>
                 </div>
-               
-              
-
 
              </div>
             <div id="all_products">
-                <!-- display product here -->
-                <!-- ///////////////// -->
-                <!-- <div section="service-box">
-                    <div class="img-box container">
-                        <div class="single-service">
-                            <img src="https://i.postimg.cc/JhLLdMtx/pic-1.jpg">
-                            <div class="overlay"></div>
-                            <div class="service-desc">
-                                <h3>Hair Styling</h3>
-                                <hr>
-                                <p>this is test under description of barbeer foundatin this is test under description of
-                                    barber foundation</p>
-                            </div>
-                        </div>
-                        <div class="single-service">
-                            <img src="https://i.postimg.cc/t4Pb5YR7/pic-2.jpg">
-                            <div class="overlay"></div>
-                            <div class="service-desc">
-                                <h3>Beard Trim</h3>
-                                <hr>
-                                <p>this is test under description of barbeer foundatin this is test under description of
-                                    barber foundation</p>
-                            </div>
-                        </div>
-                        <div class="single-service">
-                            <img src="https://i.postimg.cc/VLJmJK3q/pic-3.jpg">
-                            <div class="overlay"></div>
-                            <div class="service-desc">
-                                <h3>Hair Cut</h3>
-                                <hr>
-                                <p>this is test under description of barbeer foundatin this is test under description of
-                                    barber foundation</p>
-                            </div>
-                        </div>
-                        <div class="single-service">
-                            <img src="https://i.postimg.cc/9fYj6K7h/pic-4.jpg">
-                            <div class="overlay"></div>
-                            <div class="service-desc">
-                                <h3>Dry Shampoo</h3>
-                                <hr>
-                                <p>this is test under description of barbeer foundatin this is test under description of
-                                    barber foundation</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div> -->
+            
             </div>
         </div>
     </div>

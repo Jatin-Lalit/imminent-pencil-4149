@@ -6,7 +6,7 @@ const hairProductSchema = new mongoose.Schema({
   hairProductName: { type: String, required: true },
   description: { type: String },
   price: { type: Number, required: true },
-  genderType: { type: String, enum: ['male', 'female', 'unisex'], required: true }
+  genderType: { type: String, enum: ['male', 'Women', 'unisex'], required: true }
 });
 
 const HairProductModel = mongoose.model('hairProduct', hairProductSchema);

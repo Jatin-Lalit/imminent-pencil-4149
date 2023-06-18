@@ -21,19 +21,19 @@ window.addEventListener("load",()=>{
 
 
 //"https://elegant-hare-dungarees.cyclic.app"
-const baseUrl = "http://localhost:8080/hairstyle";
+const baseUrl = "http://localhost:8080/product";
 let BuyItems = JSON.parse(localStorage.getItem("items")) || [];
 ///api fetch
 mainFunction();
 
 async function mainFunction() {
   try {
-    let res = await fetch(`${baseUrl}/all`);
+    let res = await fetch(`${baseUrl}/get`);
 
     let data = await res.json();
     console.log(data)
 
-    displayProduct(data.styles);
+    displayProduct(data);
 
     let WomenData = await fetch(`${baseUrl}/female`);
 
@@ -76,11 +76,11 @@ async function mainFunction() {
 
 
     document.getElementById("low").addEventListener("click", function () {
-      sort_price(data.styles);
+      sort_price(data);
     });
 
     document.getElementById("high").addEventListener("click", function () {
-      sort_price_high(data.styles);
+      sort_price_high(data);
     });
   
   } catch (error) {
@@ -94,14 +94,14 @@ function displayProduct(data) {
     let container = document.createElement("div");
     //image
     let img = document.createElement("img");
-    img.setAttribute("src", ele.hairstyleimage);
+    img.setAttribute("src", ele.hairProductImage);
     img.setAttribute("class", "proClass");
 
     //title
     let name_div = document.createElement("div");
     name_div.setAttribute("class", "name_pro_div");
     let title = document.createElement("h2");
-    title.textContent = ele.hairstyleName;
+    title.textContent = ele.hairProductName;
 
     let price = document.createElement("h2");
     price.textContent = "₹" + ele.price;
@@ -190,10 +190,36 @@ function sort_price_high(data) {
 ///------------>>>>>>   Buy Function <<<<<<<<<<------------------------
 
 async function buy(ele) {
-    
-    document.getElementById("card-div").style.display="block"
+   c=1
+   document.getElementById("tprize").innerText=ele.price
+   document.getElementById("count").innerText=c
+  document.getElementById("card-div").style.display="block"
       document.getElementById("name").innerText=ele.hairstyleName
+      document.getElementById("RPrice").innerText=ele.price
       let img = document.createElement("img");
     img.setAttribute("src", ele.hairstyleimage);
     // document.getElementById("card-img").append(img)
 }
+
+let c=1
+document.getElementById("min").addEventListener("click",()=>{
+  if(c>1){
+    c-=1
+  }
+  
+  document.getElementById("count").innerText=c
+  document.getElementById("tprize").innerText=c*document.getElementById("RPrice").innerText
+})
+document.getElementById("plus").addEventListener("click",()=>{
+  c+=1
+  document.getElementById("count").innerText=c
+      
+  document.getElementById("tprize").innerText=c* document.getElementById("RPrice").innerText
+})
+
+document.getElementById("close").addEventListener("click",()=>{
+  document.getElementById("card-div").style.display="none"
+})
+document.getElementById("pay").addEventListener("click",()=>{
+  window.location=href
+})
