@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointments | Trimmers</title>
+    <link rel="shortcut icon" href="" type="image/x-icon" />
+    <link rel="stylesheet" href="../styles/booking.css" />
+    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="" />
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+</head>
+
+<body>
+    <header id="NAVBAR"></header>
+    <!-- <div id="navbar">Navbar</div> -->
+    <div id="style_container">
+        <div id="style-cards">
+            <div class="styler_header">Choose Styler</div>
+            <div id="styler_grid">
+                <!-- //////   All Cards    /////// -->
+            </div>
+        </div>
+
+        <div id="style-time">
+            <div class="styler_header">Pick Your Time</div>
+            <form id="time_picker" action="">
+                <input class="inputz" id="date" type="date" required />
+                <br />
+                <select class="inputz" id="time" name="option" required>
+                    <option value="" disabled selected>Select Your Time Slot</option>
+                    <option value="08-09">08:00 AM to 09:00 AM</option>
+                    <option value="09-10">09:00 AM to 10:00 AM</option>
+                    <option value="10-11">10:00 AM to 11:00 AM</option>
+                    <option value="11-12">11:00 AM to 12:00 PM</option>
+                    <option value="12-13">12:00 PM to 01:00 PM</option>
+                    <option value="14-15">02:00 PM to 03:00 PM</option>
+                    <option value="15-16">03:00 PM to 04:00 PM</option>
+                    <option value="16-17">04:00 PM to 05:00 PM</option>
+                    <option value="17-18">05:00 PM to 06:00 PM</option>
+                </select>
+                <br />
+                <input class="inputz" id="time_btn" type="submit" value="Done" />
+            </form>
+        </div>
+    </div>
+    <footer id="footer-main"></footer>
+</body>
+<script type="text/javascript">
+    $(function () {
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10) month = "0" + month.toString();
+        if (day < 10) day = "0" + day.toString();
+        var maxDate = year + "-" + month + "-" + day;
+        $("#date").attr("min", maxDate);
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</html>
+<script type="module" src="../scripts/booking.js"></script>
