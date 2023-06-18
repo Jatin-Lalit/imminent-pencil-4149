@@ -136,6 +136,19 @@ barberRouter.patch("/update/:id", authMiddleware, async (req, res) => {
     }
 });
 
+// get all barbers 
+// GET route to fetch all barbers
+barberRouter.get("/get", async (req, res) => {
+    try {
+      const barbers = await BarberModel.find();
+      res.status(200).json(barbers);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ msg: "Internal server error" });
+    }
+  });
+  
+
 module.exports = {
     barberRouter
 }
