@@ -1,210 +1,187 @@
 body {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
-      Verdana, sans-serif;
-  }
-  
-  p {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
-      Verdana, sans-serif;
-    font-size: 20px;
-  }
-  
-  .Buy {
-    height: 40px;
-    width: 100%;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #adffe7 40%, #1cc9ac 100%);;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
-      Verdana, sans-serif;
-    font-size: 15px;
-  }
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
+    Verdana, sans-serif;
+}
 
-  .Buy:hover{
+p {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
+    Verdana, sans-serif;
+  font-size: 20px;
+}
+
+.Buy {
+  height: 40px;
+  width: 108%;
+  border: 0px;
+  margin-bottom: -12px;
+  background: linear-gradient(135deg, #adffe7 15%, #1cc9ac 100%);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
+    Verdana, sans-serif;
+  font-size: 15px;
+  color: #666666;
+}
+
+/* .Buy:hover{
     transition: 0.8s;
     border-radius: 30px;
-  }
+  } */
 
-  .proClass {
-    margin: auto;
-    margin-left: 25%;
-    margin-top: 15px;
-  }
-  .rating {
-    font-size: 12px;
-  }
-  
-  #main {
-    width: 100%;
-    height: auto;
-    margin: auto;
-    display: flex;
-    /* border: 1px solid red;  */
-  }
-  #filterbar {
-    width: 69%;
-    height: 740px;
-    margin-left: 20px;
-    margin-top: 50px;
-    padding: 30px 30px 0px 30px;
-    border-right: 1px solid rgb(194, 194, 194);
-    background: linear-gradient(90deg, #ffffff 40%, #c5fff5 100%);
-    /* border: 5px solid red;  */
-  }
+.rating {
+  font-size: 12px;
+}
 
-  .brand_div {
-    width: 130px;
-    height: 140px;
-    margin-left: -20px;
-    text-align: center;
-    overflow: scroll;
-    overflow-x: hidden;
-  }
+#main {
+  width: 90%;
+  height: auto;
+  margin: auto;
+  display: flex;
+  /* border: 1px solid red;  */
+}
 
-  .brand_div_option:hover {
-    cursor: pointer;
-    background: linear-gradient(135deg, #adffe7 0%, #1cc9ac 100%);
-    border-radius: 5px;
-    color: rgb(36, 36, 36);
-  }
+.brands {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4%;
+  margin-top: 30px;
+  /* border: 10px solid rgb(0, 255, 42);  */
+}
 
+#gender-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
 
-  .brands {
-    display: grid;
-    width: 100%;
-    gap: 4%;
-    grid-template-columns: repeat(8, 1fr);
-    margin-top: 30px;
-    /* border: 10px solid rgb(0, 255, 42);  */
-  }
+#filterbar {
+  cursor: initial;
+}
 
+.brands>img {
+  cursor: pointer;
+  height: 10px;
+}
 
-  .brands > img {
-    cursor: pointer;
-    height: 10px;
-  }
-  .brands > div {
-    text-align: center;
-    font-size: 13px;
-    font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    padding: 2%;
-    border-radius: 5%;
-    cursor: pointer;
-  }
-  /* .brands > div:hover {
+.brands>div {
+  text-align: center;
+  font-size: 13px;
+  font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 2%;
+  border-radius: 5%;
+  cursor: pointer;
+  /* border: 1px solid; */
+}
+
+/* .brands > div:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   } */
-  #brand_img {
-    height: auto;
-    width: 100px;
-    padding: 10px;
-    border-radius: 50%;
-    border: 2px solid rgb(3, 143, 101);
-  }
+#brand_img {
+  height: auto;
+  width: 100px;
+  padding: 10px;
+  border-radius: 50%;
+  border: 2px solid rgb(3, 143, 101);
+}
 
-  #brand_img:hover{
-    transition: 0.6s;
-    background-color: #c5fff5;
-  }
+#brand_img:hover {
+  transition: 0.6s;
+  background-color: #c5fff5;
+}
 
-  #brands_head {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
-      Verdana, sans-serif;
-    font-size: 20px;
-    color: #212121;
-    font-weight: 400;
-    margin-top: 50px;
-    width: 90%;
-    border-bottom: 2px solid rgb(46, 219, 153);
-    /* border: 10px solid red;  */
-  }
-  #all_products {
-    width: 100%;
-    display: grid;
-    padding-right: 20px;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-    margin-top: 50px;
-    /* border: 10px solid rgb(255, 0, 106);  */
-  }
-  #all_products > div {
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  }
-  #all_products > div:hover {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background-color: #e4fffb;
-    transition: 0.6s;
-    cursor: pointer;
-  }
-  .proClass {
-    width: 150px;
-    height: 150px;
-    /* border: 10px solid rgb(32, 22, 26);  */
-  }
-  .name_pro_div {
-    width: 100%;
-    height: 43px;
-    overflow: hidden;
-  }
-  .proname {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
-      Verdana, sans-serif;
-    font-size: 13px;
-    color: #212121;
-    font-weight: 400;
-    margin-top: 15px;
-    margin-left: 15%;
-  }
-  .quantity {
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
-      Verdana, sans-serif;
-    font-size: 13px;
-    color: #757575;
-    font-weight: 400;
-    line-height: 5px;
-    margin-left: 40%;
-    margin-top: 10px;
-  }
-  
-  #price-box {
-    margin-left: 30%;
-  }
-  .div5 {
-    background-color: #1aab2a;
-    font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color: white;
-    font-weight: 400;
-    width: 40px;
-    height: 20px;
-    padding-left: 5px;
-    border-radius: 10%;
-    margin-left: 40%;
-  }
-  .mrp {
-    font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    color: #757575;
-    font-weight: 400;
-    line-height: 5px;
-    text-decoration: line-through;
-    margin-right: 10px;
-  }
-  .dis {
-    font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    color: #cc0000;
-    font-weight: 400;
-  }
-  .price {
-    font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    color: #212121;
-    font-weight: 400;
-    margin-left: 40%;
-  }
-  /* #sup{
+#brands_head {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
+    Verdana, sans-serif;
+  font-size: 20px;
+  color: #212121;
+  margin-top: 30px;
+  width: 100%;
+  border-bottom: 2px solid rgb(46, 219, 153);
+  /* border: 10px solid red;  */
+}
+
+#all_products {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  margin-top: 50px;
+  /* border: 10px solid rgb(255, 0, 106);  */
+}
+
+#all_products>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+#all_products>div:hover {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  background-color: #e4fffb;
+  transition: 0.6s;
+  cursor: pointer;
+}
+
+.proClass {
+  width: 200px;
+  height: 180px;
+  margin-top: 15px;
+  /* border: 10px solid rgb(32, 22, 26);  */
+}
+
+.name_pro_div {
+  display: flex;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
+    Verdana, sans-serif;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+  color: #212121;
+  border-bottom: 1px solid #cccbcb;
+}
+
+.proname,
+.price {
+  font-size: 16px;
+}
+
+.quantity {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
+    Verdana, sans-serif;
+  font-size: 16px;
+  color: #757575;
+  text-align: center;
+}
+
+#price-box {
+  margin-left: 30%;
+}
+
+.div5 {
+  background-color: #1aab2a;
+  font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: white;
+  font-weight: 400;
+  width: 40px;
+  height: 20px;
+  padding-left: 5px;
+  border-radius: 10%;
+  margin-left: 40%;
+}
+
+.dis {
+  font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #0d8369;
+
+}
+
+/* #sup{
       width: 87%;
       height: 350px;
       margin:auto;
@@ -213,114 +190,114 @@ body {
       grid-gap: 20px;
       margin-top: 50px;
       /* border: 10px solid rgb(255, 0, 106);  */
-  
-  */
-  /* .pre_img{
+
+*/
+
+/* .pre_img{
       height: 150px;
       width: 80px;
       margin-left: 30px;
       border: 10px solid rgb(255, 0, 106); 
   
   } */
-  /* left filter */
-  .left_header {
-    font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    color: #212121;
-    font-weight: 700;
-    margin-top: 8px;
-    border: 10px solid rgb(255, 0, 106);
-  }
-  /* #search_brand{
+/* left filter */
+.left_header {
+  font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #212121;
+  margin-top: 8px;
+  border: 10px solid rgb(255, 0, 106);
+}
+
+/* #search_brand{
       height: 30px;
       margin-left: 10px;
   } */
 
 
-  .left-bar-cards{
-    width: 120%;
-    margin: 0px 0px 10px 0px;
-    padding: 10px;
-    border-bottom: 1px solid rgb(190, 190, 190);
-  }
-  
-  #buy-btn {
-    cursor: pointer;
-  }
-  
-  .brand_div_option {
-    font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    color: #666666;
-    margin: 10px 15px;
-    padding: 7px 11px;
-    border: 1px solid rgb(22, 202, 118);
-    border-radius: 5px;
-  }
-  
-  #brand_check {
-    background-color: #ff6f61;
-    border-color: #ff6f61;
-    width: 15px;
-    height: 15px;
-    /* border: 10px solid rgb(255, 0, 106);  */
-  }
-  .discount_div {
-    width: 180px;
-    height: 90px;
-    margin-left: -40px;
-    text-align: center;
-  }
-  
-  /* -------------------- Mid screen------------- */
-  
-  @media (min-width: 600px) and (max-width: 1200px) {
-    #all_products {
-      width: 80%;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 20px;
-      margin-left: 40px;
-    }
-    #brands_head {
-      margin-left: 40px;
-    }
-  
-    #filterbar {
-      display: none;
-    }
-  
-    .brands {
-      width: 150%;
-      margin-left: 50px;
-    }
-  }
-  /* -------------------- Small Screen---------------- */
-  @media (min-width: 200px) and (max-width: 599px) {
-    #all_products {
-      width: 70%;
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      grid-gap: 20px;
-      margin-left: 50px;
-    }
-    #filterbar {
-      display: none;
-    }
-  
-    #brands_head {
-      margin-left: 45px;
-    }
-  
-    .brands {
-      width: 150%;
-      margin-left: 50px;
-    }
-  }
-  
+.left-bar-cards {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid rgb(3, 143, 101);
+  border-radius: 10px;
+}
 
-  /*--footer--*/
+#buy-btn {
+  cursor: pointer;
+}
+
+.brand_div_option {
+  font-family: "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #474747;
+  margin: 10px 15px;
+  padding: 7px 11px;
+  border: 1px solid rgb(22, 202, 118);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.brand_div_option:hover {
+  background: linear-gradient(135deg, #adffe7 40%, #1cc9ac 100%);
+}
+
+#brand_check {
+  background-color: #ff6f61;
+  border-color: #ff6f61;
+  width: 15px;
+  height: 15px;
+  /* border: 10px solid rgb(255, 0, 106);  */
+}
+
+.discount_div {
+  width: 140px;
+  height: 90px;
+  text-align: center;
+}
+
+/* -------------------- Mid screen------------- */
+
+@media (min-width: 700px) and (max-width: 1200px) {
+  #all_products {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    margin-left: 40px;
+  }
+
+  #brands_head {
+    margin-left: 40px;
+  }
+
+  .brands {
+    width: 150%;
+    margin-left: 50px;
+  }
+}
+
+/* -------------------- Small Screen---------------- */
+@media (min-width: 200px) and (max-width: 699px) {
+  #all_products {
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: auto;
+  }
+
+  #brands_head {
+    margin-left: 45px;
+  }
+
+  .brands {
+    width: 150%;
+    margin-left: 50px;
+  }
+}
+
+
+/*--footer--*/
 
 #footer {
   padding: 5% 10%;
@@ -390,19 +367,22 @@ body {
 
 @media screen and (max-width: 770px) {
   .footer-row {
-      flex-direction: column;
+    flex-direction: column;
   }
+
   .footer-left,
   .footer-right {
-      flex-basis: 100%;
-      font-size: 14px;
-      margin-left: 10px;
+    flex-basis: 100%;
+    font-size: 14px;
+    margin-left: 10px;
   }
+
   .footer-right {
-      text-align: left;
+    text-align: left;
   }
+
   .features-img {
-      top: 25px;
+    top: 25px;
   }
 }
 
@@ -452,8 +432,8 @@ body {
 
 @media (max-width: 500px) {
   .testimonial-container {
-      flex-direction: column;
-      text-align: center;
+    flex-direction: column;
+    text-align: center;
   }
 }
 
@@ -572,30 +552,71 @@ body {
 } */
 
 #card-div{
-   border: 2px solid red;
-   /* background-color: rgb(209, 195, 222); */
-   background: linear-gradient(90deg, #ffffff 40%, #c5fff5 100%);
-   /* position: fixed; */
-   width: 350px;
-   height: 50vh;
-   right: 40px;
-   position: absolute;
-   z-index: 1;
-   top: 50px;
-   display: none;
-   position: sticky;
-   text-align: center;
-   margin: auto;
+  /* border: 2px solid red; */
+  /* background-color: rgb(209, 195, 222); */
+  background: linear-gradient(90deg, #ffffff 40%, #c5fff5 100%);
+  /* position: fixed; */
+  width: 350px;
+  height: 50vh;
+  right: 40px;
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  display: none;
+  position: sticky;
+  text-align: center;
+  margin: auto;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 #pay-div{
+ display: flex;
+ margin: auto;
+ width: 80%;
+ justify-content: space-between;
+}
+#pay-div>div:nth-child(1){
   display: flex;
-  margin: auto;
-  width: 80%;
-  justify-content: center;
+}
+#pay-div>div:nth-child(1) button{
+   margin: 5px;
+   font-size: 10px;
+   /* width: 20px; */
+   background: linear-gradient(90deg, #ffffff 40%, #c5fff5 100%);
+   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+   border: 2px solid rgb(3, 143, 101);
+   width: 60px;
+   border-radius: 5px;
+}
+#pay-div>div:nth-child(1) a button{
+  margin: 5px;
+  font-size: 10px;
+  padding: 10px;
+  /* width: 20px; */
+  background: linear-gradient(90deg, #ffffff 40%, #c5fff5 100%);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border: 2px solid rgb(3, 143, 101);
+  width: 60px;
+  border-radius: 5px;
+}
+#pay-div>div:nth-child(2) button{
+  margin: 5px;
+  padding: 10px;
+  font-size: 10px;
+  width: 40px;
+  background: linear-gradient(90deg, #ffffff 40%, #c5fff5 100%);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  /* border: 1px solid black; */
+  border: 2px solid rgb(3, 143, 101);
+  width: 60px;
+  border-radius: 5px;
+}
+
+#pay-div>div:nth-child(1) p{
+  margin: 5px;
 }
 #ani-img{
-   width: 60%;
-   height:5%;
-   margin-bottom: 10px;
+  width: 60%;
+  height:5%;
+  margin-bottom: 10px;
 }
