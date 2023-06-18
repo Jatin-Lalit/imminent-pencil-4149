@@ -15,6 +15,36 @@ productsRouter.get("/get", async (req, res) => {
     res.status(500).send({ msg: "Internal server error" });
   }
 });
+
+//Get only data with gender type ==> Male
+productsRouter.get("/male", async (req, res) => {
+  try {
+      let styles = await HairProductModel.aggregate([{ $match: { genderType: "Men" } }])
+      res.status(200).send(styles)
+  } catch (err) {
+      return res.status(404).send(err.message)
+  }
+})
+
+//Get only data with gender type ==> Female
+productsRouter.get("/Women", async (req, res) => {
+  try {
+      let styles = await HairProductModel.aggregate([{ $match: { genderType: "Women" } }])
+      res.status(200).send(styles)
+  } catch (err) {
+      return res.status(404).send(err.message)
+  }
+})
+
+//Get only data with gender type ==> Unisex
+productsRouter.get("/unisex", async (req, res) => {
+  try {
+      let styles = await HairProductModel.aggregate([{ $match: { genderType: "unisex" } }])
+      res.status(200).send(styles)
+  } catch (err) {
+      return res.status(404).send(err.message)
+  }
+})
 // Add a new booking
 productsRouter.post("/add", async (req, res) => {
   try {

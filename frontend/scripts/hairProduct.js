@@ -35,7 +35,7 @@ async function mainFunction() {
 
     displayProduct(data);
 
-    let WomenData = await fetch(`${baseUrl}/female`);
+    let WomenData = await fetch(`${baseUrl}/Women`);
 
     let Women = await WomenData.json();
 
