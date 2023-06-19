@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./img/logo2.png">
+    <title>Create Your Account</title>
+    <style>
+        body {
+            background-color: rgb(245, 175, 126);
+        }
+
+        #main {
+            width: 80%;
+            margin: auto;
+
+        }
+
+        #main>div {
+            width: 30%;
+            margin: auto;
+            /* border: 2px solid red; */
+            background-color: rgb(228, 196, 138);
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            margin-top: 10%;
+            border-radius: 10px;
+            padding: 2% 5% 5% 5%;
+
+        }
+
+        #main img {
+            width: 60%;
+            display: block;
+            margin: auto;
+        }
+
+        .button {
+            width: 60%;
+
+            display: block;
+            margin: auto;
+            font-size: 20px;
+            background-color: rgb(68, 68, 241);
+            color: beige;
+            border-radius: 5px;
+            border: none;
+
+        }
+
+
+        .button:hover {
+            background-color: rgb(10, 10, 220);
+        }
+
+        #login {
+           
+            margin-top: 20px;
+
+
+        }
+        #login button{
+
+            width: 90%;
+            padding: 10px;
+            border-radius: 10px;
+
+            font-size: 20px;
+            margin: auto;
+            display: block;
+            background-color: rgb(68, 68, 241);
+            border: none;
+           
+            
+        }
+        #login button:hover{
+            background-color: rgb(10, 10, 220);
+        }
+        #login a {
+            text-decoration: none;
+                 
+           
+        }
+        
+
+        #main input {
+            width: 90%;
+            padding: 10px;
+            display: block;
+            margin: auto;
+            margin-top: -10px;
+            border-radius: 8px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+            border: none;
+        }
+
+        #main p {
+            margin-left: 10px;
+        }
+
+        #main h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div>
+            <div>
+                <div><a href="index.html"> <img src="#" alt=""></a></div>
+                <div>
+                    <h2>Create Your Account</h2>
+                </div>
+            </div>
+            <div>
+                <form id="form">
+                    <p>Name</p>
+                    <input type="text" id="name" placeholder="Pankaj jain">
+                    <p>Email</p>
+                    <input type="Email" id="email" placeholder="pj5223@gmail.com">
+                    <p>Password</p>
+                    <input type="password" id="password" placeholder="Password">
+                    <br>
+                    <br>
+                    <input class="button" type="submit" value="submit " />
+
+
+                </form>
+                <div id="login">
+                    <a href="../log.html"><button >Log In</button></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script>
+    let form = document.getElementById("form")
+    let mydata = JSON.parse(localStorage.getItem("time-track")) || []
+
+    form.addEventListener("submit", (el) => {
+
+        el.preventDefault();
+        let isnew = true
+        let email = document.getElementById("email").value
+        for (let i = 0; i < mydata.length; i++) {
+            if (mydata[i].email == email) {
+                isnew = false
+            }
+        }
+        if (isnew) {
+            let data = {
+                name: form.name.value,
+                email: form.email.value,
+                password: form.password.value
+            }
+
+            mydata.push(data)
+
+            localStorage.setItem("time-track", JSON.stringify(mydata))
+
+            alert("Create Your Account successfully")
+
+        } else {
+            alert("alredy Create Your Account")
+        }
+
+
+
+
+
+    })
+
+
+
+</script>

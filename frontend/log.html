@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./img/logo2.png">
+
+    <title>Log in</title>
+    <style>
+        body {
+            background-color: rgb(245, 175, 126);
+        }
+
+        #main {
+            width: 80%;
+            margin: auto;
+
+        }
+
+        #main>div {
+            width: 30%;
+            margin: auto;
+            /* border: 2px solid red; */
+            background-color: rgb(228, 196, 138);
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            margin-top: 10%;
+            border-radius: 10px;
+            padding: 2% 5% 5% 5%;
+
+        }
+
+        #main img {
+            width: 60%;
+            display: block;
+            margin: auto;
+        }
+
+        #main button {
+            width: 60%;
+            padding: 15px;
+            display: block;
+            margin: auto;
+            margin-top: 20px;
+            background-color: rgb(68, 68, 241);
+            color: beige;
+            border-radius: 5px;
+            border: none;
+
+        }
+
+        #main button:hover {
+            background-color: rgb(10, 10, 220);
+        }
+
+        #main input {
+            width: 90%;
+            padding: 10px;
+            display: block;
+            margin: auto;
+            margin-top: -10px;
+            border-radius: 8px;
+            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+            border: none;
+        }
+
+        #main p {
+            margin-left: 10px;
+        }
+
+        #main h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div>
+            <div>
+                <div><a href="index.html"> <img src="#" alt=""></a></div>
+                <div>
+                    <h2>Log in</h2>
+                </div>
+            </div>
+            <div>
+                <p>Email</p>
+                <input id="email" type="Email" placeholder="pj5223@gmail.com">
+                <p>Password</p>
+                <input id="password" type="password" placeholder="Password">
+
+            </div>
+            <div> <button id="login"> <b>Log In</b> </button></div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+    let login = document.getElementById("login")
+    login.addEventListener("click", () => {
+        let mydata = JSON.parse(localStorage.getItem("time-track")) || []
+        let email = document.getElementById("email").value
+        let password = document.getElementById("password").value
+          id=0
+        let icard = false
+        for (let i = 0; i < mydata.length; i++) {
+
+            if (mydata[i].email == email) {
+
+                if (mydata[i].password == password) {
+
+                    icard = true
+
+                    id=i
+
+                }
+            }
+        }
+
+        if (icard) {
+            alert("login succesfull")
+            localStorage.setItem("userlog",JSON.stringify(mydata[id]))
+
+            window.location.href = "./index.html"
+            
+
+        } else {
+
+            alert("wrong credentials")
+        }
+    })
+
+
+
+
+
+
+
+</script>
