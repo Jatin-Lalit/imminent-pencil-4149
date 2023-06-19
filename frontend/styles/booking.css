@@ -17,10 +17,11 @@
     border: 1px solid transparent;
     margin-top: -1px;
   }
+  
   #time_picker > #date {
-    /* border: none; */
+    border: none;
     padding-left: 19px;
-    width: 77%;
+    width: 74%;
     padding-right: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -29,7 +30,7 @@
     font-weight: 800;
   }
   #time_picker > select {
-    /* border: none; */
+    border: none;
     width: 85%;
     padding: 10px;
     font-size: 1rem;
@@ -66,7 +67,6 @@
   
   #style_container {
     width: 90%;
-    display: flex;
     margin: auto;
     margin-top: 50px;
     margin-bottom: 140px;
@@ -75,19 +75,65 @@
     background-color: rgba(255, 255, 255, 0.644);
   }
   
-  #style-cards{
-    width: 70%;
-    border: 1px solid;
+  #top-cont{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    /* border: 1px solid red; */
+  }
+
+  #top-style{
+    border: 1px solid #c5fff5;
+    width: 250px;
+  }
+
+  #styleImg{
+    width: 100px;
+    border-radius: 5px;
   }
 
   #style-time{
-    width: 30%;
-    border: 1px solid red;
+    width: 250px;
+    margin-left: 20px;
+    border: 1px solid #c5fff5;
+  }
+
+  #hairstyle-card{
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #c5fff5;
+    /* border: 1px solid blue; */
+  }
+
+  #changeStyle{
+    border: none;
+    background-color: rgba(0, 0, 0, 0.818);
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    width: 90%;
+    height: auto;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+  }
+
+  #changeStyle:hover{
+    scale: 1.1;
+  }
+
+  #style-cards{
+    width: 95%;
+    margin: auto;
+    margin-top: 30px;
+    /* border: 1px solid; */
   }
 
   .styler_header {
     width: 100%;
-    text-align: center;
+    margin-left: 30px;
     padding: 20px 0px;
     font-size: 28px;
   }
@@ -129,15 +175,15 @@
     background-size: cover;
     margin: auto;
     padding-top: 25px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     background-color: #c5fff5;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
   }
   
 
   .inputz {
     width: 90%;
-    height: 30px;
+    height: 20px;
     margin-bottom: 15px;
   }
 
@@ -166,7 +212,17 @@
     }
   }
   
-  @media screen and (min-width: 300px) and (max-width: 649px) {
+  @media screen and (max-width: 649px) {
+    #top-cont{
+      flex-direction: column;
+      gap: 20px;
+      margin: auto;
+    }
+
+    #style-time{
+      margin-left: 0px;
+    }
+
     #styler_grid {
       grid-template-columns: repeat(1, 1fr);
       grid-template-rows: auto;

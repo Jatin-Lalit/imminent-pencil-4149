@@ -5,19 +5,19 @@ time_btn.addEventListener("submit", (event) => {
   let userdata = JSON.parse(localStorage.getItem("userdata"));
   let service_data = JSON.parse(sessionStorage.getItem("service_data"));
 
-//   if(userdata==null){
-//     return Swal.fire({
-//       title: 'Login First',
-//       width:"30%",
-//       background:"white",
-//       color:"red",
-//       confirmButton:true
-//     }).then((value)=>{
-//       if(value.isConfirmed) {
-//         window.location.href = "../index.html"
-//       }
-//    })  
-//   }
+  //   if(userdata==null){
+  //     return Swal.fire({
+  //       title: 'Login First',
+  //       width:"30%",
+  //       background:"white",
+  //       color:"red",
+  //       confirmButton:true
+  //     }).then((value)=>{
+  //       if(value.isConfirmed) {
+  //         window.location.href = "../index.html"
+  //       }
+  //    })  
+  //   }
 
   let obj = {};
   obj["date"] = document.querySelector("#date").value;
@@ -31,11 +31,11 @@ time_btn.addEventListener("submit", (event) => {
   fetAllStylerFn(obj);
   Swal.fire('Date and Time are Selected, Now please choose your styler')
 });
-
+//https://hair-salon-backend.onrender.com/stylist/styler
 let fetAllStylerFn = async (obj) => {
   try {
     let req = await fetch(
-      "https://hair-salon-backend.onrender.com/stylist/styler",
+      "http://localhost:8080/barber/get",
       {
         method: "GET",
         headers: {
@@ -49,9 +49,9 @@ let fetAllStylerFn = async (obj) => {
     } else {
       Swal.fire({
         title: 'Unable to Load the Data',
-        width:"25%",
-        background:"#243b55",
-        color:"red"
+        width: "25%",
+        background: "#243b55",
+        color: "red"
       })
     }
   } catch (error) {
@@ -59,7 +59,7 @@ let fetAllStylerFn = async (obj) => {
       icon: 'error',
       title: 'Oops...',
       text: 'Bad Request 404',
-      width:"25%",
+      width: "25%",
     })
   }
 };
@@ -72,12 +72,11 @@ let renderStylerFunction = (allData, obj) => {
   let stylerArr = allData.map((item) => {
     return `<div class="styler_card">
                 <img class="styler_img" width="100%"
-                    src=${item.image}
+                    src=${item.profilePic}
                     alt=${item.name + item._id}>
                 <div class="styler_name">${item.name}</div>
-                <button class="appointment_btn" data-name=${
-                  item.name
-                } data-id=${item._id}>Book Appointment</button>
+                <button class="appointment_btn" data-name=${item.name
+      } data-id=${item._id}>Book Appointment</button>
             </div>`;
   });
   displayContainer.innerHTML = stylerArr.join("");
@@ -94,11 +93,14 @@ let renderStylerFunction = (allData, obj) => {
         availablilityCheckerFunction(obj);
       } else {
         Swal.fire({
-          title: 'Please select Date and Time',
-          width:"25%",
-          background:"#243b55",
-          color:"red"
-        })
+          icon: 'success',
+          title: 'Appointment Booked',
+          text: 'Complete Payment Process',
+          width: "25%",
+        }).then(() => {
+          // Redirect to another page
+          window.location.href = "pay.html";
+        });
       }
     });
   }
@@ -131,9 +133,9 @@ let availablilityCheckerFunction = (obj) => {
             if (newData.length != 0) {
               Swal.fire({
                 title: 'This slot is not available, Please choose another slot !',
-                width:"26%",
-                background:"#243b55",
-                color:"red"
+                width: "26%",
+                background: "#243b55",
+                color: "red"
               })
             } else {
               //sendMailFunction(obj);
@@ -143,17 +145,17 @@ let availablilityCheckerFunction = (obj) => {
           .catch(() => {
             Swal.fire({
               title: 'Unable to Load the Appointment Data',
-              width:"26%",
-              background:"#243b55",
-              color:"red"
+              width: "26%",
+              background: "#243b55",
+              color: "red"
             })
           });
       } else {
         Swal.fire({
           title: 'Unable to Load the Appointment Data',
-          width:"26%",
-          background:"#243b55",
-          color:"red"
+          width: "26%",
+          background: "#243b55",
+          color: "red"
         })
       }
     })
@@ -162,7 +164,7 @@ let availablilityCheckerFunction = (obj) => {
         icon: 'error',
         title: 'Oops...',
         text: 'Bad Request 404',
-        width:"25%",
+        width: "25%",
       })
     });
 };
@@ -184,9 +186,9 @@ async function createAppointmentFunction(obj) {
     } else {
       Swal.fire({
         title: 'Unable to add new appointment !',
-        width:"25%",
-        background:"#243b55",
-        color:"red"
+        width: "25%",
+        background: "#243b55",
+        color: "red"
       })
     }
   } catch (error) {
@@ -194,78 +196,10 @@ async function createAppointmentFunction(obj) {
       icon: 'error',
       title: 'Oops...',
       text: 'Bad Request 404',
-      width:"25%",
+      width: "25%",
     })
   }
 }
-
-/* -------------------------------------------------------------------------- */
-/*                     copy this to get navbar and footer                     */
-/* -------------------------------------------------------------------------- */
-// import { Navbar } from "../components/Navbar.js";
-// import Footer from "../components/Footer.js";
-
-// window.onload = () => {
-//   document.getElementById("nav-logo").src = "../images/logo.png";
-//   document.getElementById("logo-href").href = "../index.html";
-//   document.getElementById("bookhref").href = "gender.html";
-//   document.getElementById("viewhref").href = "appointment.html";
-//   document.getElementById("contacthref").href = "./feedbackForm.html";
-//   // document.getElementById("loginhref").href =
-//   //   "../routes/loginSignup/login.html";
-// };
-
-// let nav = document.getElementById("NAVBAR");
-// nav.innerHTML = Navbar();
-
-// copy nav container from index.html line 12 only
-// In html file write like this "<script  type="module" src="./scripts/index.js"></script>" must include type=module
-
-// Function used to shrink nav bar removing paddings and adding black background
-
-window.addEventListener("scroll", function () {
-  var navBar = document.querySelector(".nav");
-  if (document.documentElement.scrollTop > 50) {
-    navBar.classList.add("affix");
-  } else {
-    navBar.classList.remove("affix");
-  }
-});
-
-const myElement = document.getElementById("visible1");
-var navBar = document.querySelector(".nav");
-
-const observer = new IntersectionObserver((entries) => {
-  const isVisible = entries[0].isIntersecting;
-  if (!isVisible) {
-    navBar.classList.add("affix");
-  } else {
-    navBar.classList.remove("affix");
-  }
-});
-
-observer.observe(myElement);
-
-// Function to show and hide hamburger content
-
-var navTrigger = document.querySelector(".navTrigger");
-var mainListDiv = document.querySelector("#mainListDiv");
-
-navTrigger.addEventListener("click", function () {
-  navTrigger.classList.toggle("active");
-  mainListDiv.classList.toggle("show_list");
-  mainListDiv.style.display = "block";
-});
-
-/* --------------------------------- Footer --------------------------------- */
-let footer = document.getElementById("footer-main");
-footer.innerHTML = Footer();
-
-/* -------------------------------------------------------------------------- */
-/*                     copy this to get navbar and footer                     */
-/* -------------------------------------------------------------------------- */
-
-
 
 /* -------------------------------------------------------------------------- */
 /*           clearing the localStorage and changing Login to Logout           */
@@ -307,3 +241,41 @@ if (data) {
 if (loginstat && loginstat.innerText == "Login") {
   loginstat.href = "../routes/loginSignup/login.html";
 }
+
+
+let chooseStyle = JSON.parse(localStorage.getItem("hairstyles"))
+chooseStyle = chooseStyle[chooseStyle.length-1]
+const styleCard = document.getElementById("hairstyle-card")
+
+
+function displayStyle(data) {
+  styleCard.innerHTML = ""
+    
+    let card = document.createElement("div")
+    let img = document.createElement("img")
+    let name = document.createElement("p")
+    let gender = document.createElement("p")
+    let btn = document.createElement("button")
+
+    img.setAttribute("src", chooseStyle.hairstyleimage);
+    img.setAttribute("id", "styleImg");
+
+    name.textContent = chooseStyle.hairstyleName;
+    name.setAttribute("id", "styleName")
+
+    gender.textContent = chooseStyle.genderType;
+    gender.setAttribute("id", "styleName")
+
+    btn.innerText = "Change Style"
+    btn.setAttribute("id", "changeStyle")
+
+    btn.addEventListener("click", () => {
+      // styleCard = []
+      window.location.href = "hairstyle.html";
+    })
+
+    card.append(img, name, gender, btn)
+    styleCard.append(card)
+}
+
+displayStyle()

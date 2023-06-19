@@ -47,8 +47,8 @@ try {
         body:JSON.stringify(obj)
     })
     if(signup_res.ok){
+        localStorage.setItem("username", name)
         alert("Register Succecfully Now You  Can Login");
-       
     }
 } catch (error) {
     console.log(error)
@@ -78,7 +78,7 @@ async function login(){
             let token= await res.json();
              localStorage.setItem("token",token.token)
             alert("Login Succecfully");
-            window.location.href="home.html"
+            window.location.href="index.html"
         }else{
             alert("Wrong Credntials")
         }
