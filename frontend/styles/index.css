@@ -9,7 +9,7 @@
 /* CSS for the navigation bar */
 
 nav{
-    height: 5rem;
+    height: 100px;
     width: 100vw;
     background-color: #009688;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
@@ -209,6 +209,8 @@ nav{
     background-color: #009688; /* Change the background color when hovering over the buttons */
   }
 /* /////////////////// */
+
+
 #banner {
     background: linear-gradient(rgba(0, 0, 0, 0.5), #009688), url(https://i.postimg.cc/wvWYvN24/banner.jpg);
     background-size: cover;
@@ -740,4 +742,8 @@ nav ul li a {
         margin-top: 120px;
         
     }
+}
+
+#username{
+    color: white;
 }
