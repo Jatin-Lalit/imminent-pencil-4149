@@ -33,7 +33,7 @@ try {
     let obj={
       name,
       email,
-      password,
+      pass,
       mobileNumber
     }
     
@@ -63,7 +63,7 @@ async function login(){
         let password=document.getElementById("password-log").value;
         let obj={
             email,
-            password
+            pass
         }
         console.log(obj)
     
