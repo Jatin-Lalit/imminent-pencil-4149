@@ -11,7 +11,7 @@
 <body>
     <!-- ////////////////////////// -->
     <div class="navbar">
-        <nav>
+        <nav style="height: 60px;">
             <!-- <div class="logo">
                 <img src="https://imagetolink.com/ib/a2vcHfDx9X.png" alt="Logo Image">
             </div> -->
@@ -26,8 +26,9 @@
                 <li><a href="./src/hairProduct.html">Hair Products</a></li>
                 <li><a href="#">Services</a></li>
                 <li><a href="#">Contact Us</a></li>
-                <li><a href="./log.html"><button class="login-button">Login</button></a></li>
-                <li><a href="./src/signup.html"><button class="login-button">Signup</button></a></li>
+                <li id="log"><a href="./log.html"><button class="login-button">Login</button></a></li>
+                <li  id="sign"><a href="./src/signup.html"><button class="login-button">Signup</button></a></li>
+                <li id="username"></li>
             </ul>
         </nav>
     </div>
@@ -289,4 +290,19 @@
         //Hamburger Animation
         hamburger.classList.toggle("toggle");
     });
+
+
+    let us = JSON.parse(localStorage.getItem("userlog"))
+    if(us){
+        document.getElementById("username").style.display="block"
+        document.getElementById("username").innerText = `Welcome ${us.name}`
+        document.getElementById("log").style.display="none"
+        document.getElementById("sign").style.display="none"
+    }else{
+        document.getElementById("log").style.display="block"
+        document.getElementById("sign").style.display="block"
+        document.getElementById("username").style.display="none"
+       
+    }
+    console.log(us);
 </script>
