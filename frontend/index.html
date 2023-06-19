@@ -29,6 +29,7 @@
                 <li id="log"><a href="./log.html"><button class="login-button">Login</button></a></li>
                 <li  id="sign"><a href="./src/signup.html"><button class="login-button">Signup</button></a></li>
                 <li id="username"></li>
+                <li id="logout">Logout</li>
             </ul>
         </nav>
     </div>
@@ -291,18 +292,30 @@
         hamburger.classList.toggle("toggle");
     });
 
-
     let us = JSON.parse(localStorage.getItem("userlog"))
+    document.getElementById("logout").addEventListener("click",()=>{
+        // localStorage.clear()
+        document.getElementById("log").style.display="block"
+        document.getElementById("sign").style.display="block"
+        document.getElementById("logout").style.display="none"
+        document.getElementById("username").style.display="none"
+      
+    })
     if(us){
         document.getElementById("username").style.display="block"
         document.getElementById("username").innerText = `Welcome ${us.name}`
         document.getElementById("log").style.display="none"
         document.getElementById("sign").style.display="none"
-    }else{
-        document.getElementById("log").style.display="block"
-        document.getElementById("sign").style.display="block"
-        document.getElementById("username").style.display="none"
-       
+        document.getElementById("logout").style.display="block"
+        
     }
+    // else{
+    //     document.getElementById("log").style.display="block"
+    //     document.getElementById("sign").style.display="block"
+    //     document.getElementById("logout").style.display="none"
+    //     document.getElementById("username").style.display="none"
+    // }
+
+ 
     console.log(us);
 </script>
