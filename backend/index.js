@@ -24,7 +24,7 @@ app.use("/hairstyle", hairStyleRouter)
 app.use("/hairstylebooking", hairStyleBookingRouter)
 app.use("/product", productsRouter)
 app.use("/order", orderRouter)
-hairStyleRouter
+
 // app.use("/auth", authRoute)
 
 // after user have logged in , we will use the auth middleware 
