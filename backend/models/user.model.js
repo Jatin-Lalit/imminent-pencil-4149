@@ -98,8 +98,8 @@ const userSchema = mongoose.Schema(
       subscription: {
         planType: {
           type: String,
-          enum: Object.values(SubscriptionPlanTypes),
-          default: SubscriptionPlanTypes.BASIC,
+          enum: ["basic", "premium", "superpremium"],
+          default: "basic",
         },
         startDate: { type: Date },
         endDate: { type: Date },
