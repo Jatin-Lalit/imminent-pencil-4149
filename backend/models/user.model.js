@@ -10,7 +10,6 @@ const userSchema = mongoose.Schema(
     dateOfBirth: { type: Date },
     gender: { type: String, enum: ["male", "female", "other"] },
     nationality: { type: String },
-
     phone: { type: String },
     address: {
       street: { type: String },
@@ -28,16 +27,28 @@ const userSchema = mongoose.Schema(
     ],
 
     paymentInfo: {
-      paymentMethods: [{ type: String }],
+      paymentMethods: [
+        {
+          methodType: { type: String },
+          cardNumberLastFour: { type: String },
+          expirationDate: { type: String },
+        },
+      ],
       billingAddress: {
-        street: { type: String },
+        fullName: { type: String },
+        streetAddress: { type: String },
         city: { type: String },
+        state: { type: String },
+        postalCode: { type: String },
+        country: { type: String },
+        phoneNumber: { type: String },
       },
     },
 
     medicalHistory: {
       allergies: [{ type: String }],
       medications: [{ type: String }],
+      comments: { type: String },
     },
 
     languagePreferences: [{ type: String }],
@@ -55,12 +66,24 @@ const userSchema = mongoose.Schema(
       {
         timestamp: { type: Date },
         ipAddress: { type: String },
+        deviceType: { type: String },
+        browser: { type: String },
+        location: {
+          latitude: { type: Number },
+          longitude: { type: Number },
+        },
       },
     ],
 
     socialMedia: {
-      facebook: { type: String },
-      twitter: { type: String },
+      facebook: {
+        type: String,
+        match: /^(https?:\/\/)?(www\.)?facebook.com\/.+$/,
+      },
+      twitter: {
+        type: String,
+        match: /^(https?:\/\/)?(www\.)?twitter.com\/[a-zA-Z0-9_]+$/,
+      },
     },
 
     role: { type: String, enum: ["user", "admin"], default: "user" },
@@ -86,7 +109,7 @@ const userSchema = mongoose.Schema(
 
     preferredContactTime: { type: String },
 
-    averageRating: { type: Number, default: 0 },
+    averageUserRating: { type: Number, default: 0 },
 
     loyaltyPoints: { type: Number, default: 0 },
 
@@ -109,6 +132,22 @@ const userSchema = mongoose.Schema(
       endDate: { type: Date },
       isActive: { type: Boolean, default: false },
     },
+    // Special Requests
+    specialRequests: [{ type: String }],
+
+    // Appointment History
+    appointmentHistory: [
+      {
+        barberId: { type: mongoose.Schema.Types.ObjectId, ref: "barber" },
+        appointmentDate: { type: Date },
+        serviceBooked: { type: String },
+        feedback: { type: String },
+        // ... other appointment details
+      },
+    ],
+
+    // Favorite Hairstyles
+    favoriteHairstyles: [{ type: String }],
   },
   { versionKey: false, timestamps: true }
 );
