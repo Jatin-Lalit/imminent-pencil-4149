@@ -14,6 +14,9 @@ const {
   generateNewToken,
   updateUserDetails,
   getAllUsers,
+  resetPassword,
+  saveNewPassword,
+  verifyOtp,
 } = require("../controllers/user.controller");
 // const cors =  require("cors")
 
