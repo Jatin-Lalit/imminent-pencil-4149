@@ -11,6 +11,8 @@ const userSchema = mongoose.Schema(
     gender: { type: String, enum: ["male", "female", "other"] },
     nationality: { type: String },
     phone: { type: String },
+    userUid: { type: String, unique: true },
+
     address: {
       street: { type: String },
       city: { type: String },
