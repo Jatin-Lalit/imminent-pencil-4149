@@ -13,19 +13,24 @@ const registerUser = async (req, res) => {
     req.body.uniqueUserId = uuidv4();
     let alreadyPresent = await UserModel.findOne({ email: userData.email });
     if (alreadyPresent) {
-      return res.status(400).send({
-        msg: "User is already present. Please use a different email.",
+      return res.status(400).json({
+        message: "User is already present. Please use a different email.",
+        success: false,
       });
     } else {
       const hash = bcrypt.hashSync(userData.password, 4);
       userData.password = hash;
       const user = new UserModel(userData);
       await user.save();
-      res.status(200).send({ msg: "New user added" });
+      return res.status(200).json({ message: "New user added", success: true });
     }
   } catch (error) {
     console.log(error);
-    res.status(400).send({ msg: "Cannot add new user" });
+    return res.status(400).json({
+      message: "Cannot add new user",
+      success: false,
+      error: error.message,
+    });
   }
 };
 
@@ -48,20 +53,26 @@ const userLogin = async (req, res) => {
         redisClient.set("jwttoken", token);
         redisClient.set("refreshtoken", refreshToken);
         store.set("barberUser", myUser, token, refreshToken);
-        res.status(200).send({
-          msg: "User logged in",
+        return res.status(200).json({
+          message: "User logged in",
           token,
           refreshToken,
           usernameforchat: myUser.name,
           userId: myUser._id,
+          success: true,
         });
       });
     } else {
-      res.status(400).send({ msg: "User not found" });
+      return res
+        .status(400)
+        .json({ message: "User not found", success: false });
     }
   } catch (error) {
     console.log(error);
-    res.status(400).send(error.message || "Error logging in");
+    return res.status(400).json({
+      message: error.message || "Error logging in",
+      success: false,
+    });
   }
 };
 
@@ -71,10 +82,10 @@ const userLogout = async (req, res) => {
     const blacklist = new BlacklistModel({ token });
     await blacklist.save();
     store.remove("barberUser");
-    res.status(200).send({ msg: "Logged out" });
+    return res.status(200).json({ message: "Logged out", success: true });
   } catch (error) {
     console.log(error);
-    res.status(400).send({ msg: "Cannot logout" });
+    return res.status(400).json({ message: "Cannot logout", success: false });
   }
 };
 
@@ -90,11 +101,18 @@ const generateNewToken = async (req, res) => {
         { expiresIn: "7d" }
       );
       redisClient.set("jwttoken", token);
-      res.send({ msg: "New token generated", token });
+      return res.status(200).json({
+        message: "New token generated",
+        token,
+        success: true,
+      });
     }
   } catch (error) {
     console.log(error);
-    res.send(error.message || "Error generating new token");
+    return res.status(500).json({
+      message: error.message || "Error generating new token",
+      success: false,
+    });
   }
 };
 
@@ -105,25 +123,131 @@ const updateUserDetails = async (req, res) => {
     const user = await UserModel.findByIdAndUpdate(id, req.body);
 
     if (!user) {
-      return res.status(404).send({ msg: "User not found" });
+      return res.status(404).json({
+        message: "User not found",
+        success: false,
+      });
     }
 
-    res.status(200).send({ msg: "User details updated successfully" });
+    return res.status(200).json({
+      message: "User details updated successfully",
+      success: true,
+    });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ msg: "Internal server error" });
+    return res.status(500).json({
+      message: "Internal server error",
+      success: false,
+    });
   }
 };
 
 const getAllUsers = async (req, res) => {
   try {
     const users = await UserModel.find();
-    res.status(200).json(users);
+    return res.status(200).json({ users, success: true });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ msg: "Internal server error" });
+    return res.status(500).json({
+      message: "Internal server error",
+      success: false,
+    });
   }
 };
+
+const resetPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "User not found", success: false });
+    }
+
+    const resetToken = generateResetToken(); // Replace with your reset token generation logic
+
+    await sendResetToken(user.email, resetToken); // Replace with logic to send reset token via email or SMS
+
+    user.resetToken = resetToken;
+    await user.save();
+
+    return res.status(200).json({
+      message: "Password reset link sent successfully",
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Internal server error",
+      success: false,
+    });
+  }
+};
+
+const saveNewPassword = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "User not found", success: false });
+    }
+
+    const hash = bcrypt.hashSync(newPassword, 4);
+    user.password = hash;
+    await user.save();
+
+    return res.status(200).json({
+      message: "New password saved successfully",
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Internal server error",
+      success: false,
+    });
+  }
+};
+
+const verifyOtp = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "User not found", success: false });
+    }
+
+    if (user.otp !== otp) {
+      return res.status(400).json({ message: "Invalid OTP", success: false });
+    }
+
+    user.otp = null;
+    await user.save();
+
+    return res.status(200).json({
+      message: "OTP verified successfully",
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Internal server error",
+      success: false,
+    });
+  }
+};
+
 module.exports = {
   registerUser,
   userLogin,
@@ -131,4 +255,7 @@ module.exports = {
   generateNewToken,
   updateUserDetails,
   getAllUsers,
+  resetPassword,
+  saveNewPassword,
+  verifyOtp,
 };
