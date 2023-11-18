@@ -75,6 +75,10 @@ const userSchema = mongoose.Schema(
       },
     ],
 
+    lastLogin: {
+      timestamp: { type: Date },
+      ipAddress: { type: String },
+    },
     socialMedia: {
       facebook: {
         type: String,
@@ -86,39 +90,51 @@ const userSchema = mongoose.Schema(
       },
     },
 
-    role: { type: String, enum: ["user", "admin"], default: "user" },
+    role: { type: String, enum: ["user", "admin"], default: "user" }, // not much useful here but still can be used differently
 
-    isAccountVerified: { type: Boolean, default: false },
+    isAccountEmailVerified: { type: Boolean, default: false }, // email verification
     isActive: { type: Boolean, default: true },
     passwordResetToken: { type: String },
-    otp: {
+    otpEmail: {
       code: { type: String },
       expiration: { type: Date },
+      attempts: { type: Number, default: 0 },
+      maxAttempts: { type: Number, default: 3 },
+      lastAttempt: { type: Date },
+      used: { type: Boolean, default: false },
     },
-    isTwoFactorAuthEnabled: { type: Boolean, default: false },
 
-    lastLogin: {
-      timestamp: { type: Date },
-      ipAddress: { type: String },
+    otpMobile: {
+      code: { type: String },
+      expiration: { type: Date },
+      attempts: { type: Number, default: 0 },
+      maxAttempts: { type: Number, default: 3 },
+      lastAttempt: { type: Date },
+      used: { type: Boolean, default: false },
     },
+
+    isTwoFactorAuthEnabled: { type: Boolean, default: false },
 
     privacySettings: {
       visibleEmail: { type: Boolean, default: true },
       visiblePhone: { type: Boolean, default: true },
     },
 
-    preferredContactTime: { type: String },
+    preferredContactTime: {
+      // ^ we can create custom slots here
+      morning: { type: Boolean, default: false }, // e.g., 8 AM - 12 PM
+      afternoon: { type: Boolean, default: false }, // e.g., 12 PM - 4 PM
+      evening: { type: Boolean, default: false }, // e.g., 4 PM - 8 PM
+      night: { type: Boolean, default: false }, // e.g., 8 PM - 12 AM
+      lateNight: { type: Boolean, default: false }, // e.g., 12 AM - 6 AM
+    },
 
     averageUserRating: { type: Number, default: 0 },
-
-    loyaltyPoints: { type: Number, default: 0 },
 
     // Subscription Plans
     subscription: {
       loyaltyPoints: { type: Number, default: 0 },
-
-      // Subscription Plans
-      subscription: {
+      details: {
         planType: {
           type: String,
           enum: ["basic", "premium", "superpremium"],
@@ -128,9 +144,6 @@ const userSchema = mongoose.Schema(
         endDate: { type: Date },
         isActive: { type: Boolean, default: false },
       },
-      startDate: { type: Date },
-      endDate: { type: Date },
-      isActive: { type: Boolean, default: false },
     },
     // Special Requests
     specialRequests: [{ type: String }],
@@ -142,7 +155,6 @@ const userSchema = mongoose.Schema(
         appointmentDate: { type: Date },
         serviceBooked: { type: String },
         feedback: { type: String },
-        // ... other appointment details
       },
     ],
 
