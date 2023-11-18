@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <button id="rzp-button1">Pay with Razorpay</button>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    YOUR_KEY_ID = "rzp_test_2bmVi5MRpANW6w"
+    const localCreateRazorpayOrderIdUrl = "http://localhost:8080/order/createOrderId";
+    const totalOrderAmount = JSON.parse(localStorage.getItem("randomOrderobj")) || 1111;
+    var order_Id;
+    $(document).ready(function () {
+      var settings = {
+        "url": localCreateRazorpayOrderIdUrl,
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": JSON.stringify({
+          "amount": totalOrderAmount,
+        }),
+      };
+
+      //creates new orderId everytime
+      $.ajax(settings).done(function (response) {
+
+        orderId = response.orderId;
+        order_id = orderId
+        console.log(orderId);
+        $("button").show();
+      });
+    });
+
+
+    var options = {
+      "key": YOUR_KEY_ID, // Enter the Key ID generated from the Dashboard
+      "amount": totalOrderAmount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": "Acme Corp",
+      "description": "Test Transaction",
+      "image": "https://cdn.pixabay.com/photo/2021/09/06/22/42/universal-access-6602642_1280.png",
+      "order_id": order_Id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response) {
+        console.log("🚀 ~ file: razorPayFe.html:71 ~ options.response:", options.response)
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+      },
+      "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000"
+      },
+      "notes": {
+        "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+        "color": "#3399cc"
+      }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response) {
+      alert(response.error.code);
+      alert(response.error.description);
+      alert(response.error.source);
+      alert(response.error.step);
+      alert(response.error.reason);
+      alert(response.error.metadata.order_id);
+      alert(response.error.metadata.payment_id);
+
+    });
+    document.getElementById('rzp-button1').onclick = function (e) {
+      rzp1.open();
+      e.preventDefault();
+    }
+  </script>
+</body>
+
+</html>

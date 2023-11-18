@@ -1,24 +1,117 @@
-const mongoose = require('mongoose');
-// package so the we can use email schema type for email validation, also install this package
-require('mongoose-type-email');
+const mongoose = require("mongoose");
+require("mongoose-type-email");
 
-// timestamps for creation and updatin date 
-const userSchema = mongoose.Schema({
-    name: { type: String, required: true, lowercase: true, unique: true },
-    email: { type: mongoose.SchemaTypes.Email, required: true, lowercase: true },// for unique identification
-    password: { type: String, min: 1, required: true },
-    profilePic: {
-        type: String,
-        default:
-            "https://img.freepik.com/free-vector/man-working-laptop-with-coffee-stationary-cartoon-vector-illustration_138676-2206.jpg",
+const userSchema = mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    email: { type: mongoose.SchemaTypes.Email, required: true, unique: true },
+    password: { type: String, required: true },
+    username: { type: String, unique: true },
+    dateOfBirth: { type: Date },
+    gender: { type: String, enum: ["male", "female", "other"] },
+    nationality: { type: String },
+
+    phone: { type: String },
+    address: {
+      street: { type: String },
+      city: { type: String },
+      state: { type: String },
+      country: { type: String },
+      zipCode: { type: String },
     },
-    mobileNumber: { type: String, required: true },
-    uniqueUserId: { type: String, required: true, unique: true }, // for unique identification
-    // bookings: [bookingSchema],
-}, { versionKey: false, timestamps: true });
+    emergencyContacts: [
+      {
+        name: { type: String },
+        relationship: { type: String },
+        phoneNumber: { type: String },
+      },
+    ],
 
+    paymentInfo: {
+      paymentMethods: [{ type: String }],
+      billingAddress: {
+        street: { type: String },
+        city: { type: String },
+      },
+    },
 
+    medicalHistory: {
+      allergies: [{ type: String }],
+      medications: [{ type: String }],
+    },
 
+    languagePreferences: [{ type: String }],
+    notificationSettings: {
+      email: { type: Boolean, default: true },
+      sms: { type: Boolean, default: false },
+      pushNotifications: { type: Boolean, default: true },
+    },
+    preferences: {
+      preferredBarber: { type: mongoose.Schema.Types.ObjectId, ref: "barber" },
+      preferredService: { type: String },
+    },
+
+    loginHistory: [
+      {
+        timestamp: { type: Date },
+        ipAddress: { type: String },
+      },
+    ],
+
+    socialMedia: {
+      facebook: { type: String },
+      twitter: { type: String },
+    },
+
+    role: { type: String, enum: ["user", "admin"], default: "user" },
+
+    isAccountVerified: { type: Boolean, default: false },
+    isActive: { type: Boolean, default: true },
+    passwordResetToken: { type: String },
+    otp: {
+      code: { type: String },
+      expiration: { type: Date },
+    },
+    isTwoFactorAuthEnabled: { type: Boolean, default: false },
+
+    lastLogin: {
+      timestamp: { type: Date },
+      ipAddress: { type: String },
+    },
+
+    privacySettings: {
+      visibleEmail: { type: Boolean, default: true },
+      visiblePhone: { type: Boolean, default: true },
+    },
+
+    preferredContactTime: { type: String },
+
+    averageRating: { type: Number, default: 0 },
+
+    loyaltyPoints: { type: Number, default: 0 },
+
+    // Subscription Plans
+    subscription: {
+      loyaltyPoints: { type: Number, default: 0 },
+
+      // Subscription Plans
+      subscription: {
+        planType: {
+          type: String,
+          enum: Object.values(SubscriptionPlanTypes),
+          default: SubscriptionPlanTypes.BASIC,
+        },
+        startDate: { type: Date },
+        endDate: { type: Date },
+        isActive: { type: Boolean, default: false },
+      },
+      startDate: { type: Date },
+      endDate: { type: Date },
+      isActive: { type: Boolean, default: false },
+    },
+  },
+  { versionKey: false, timestamps: true }
+);
 
 const UserModel = mongoose.model("user", userSchema);
 
